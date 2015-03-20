@@ -2,20 +2,23 @@
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.AspNet.Mvc;
+using PopularizaceCz.Database.Infrastructure;
+using PopularizaceCz.ViewModels;
+using PopularizaceCz.Database;
 
 namespace PopularizaceCz.Controllers
 {
-    public class HomeController : Controller
+    public sealed class HomeController : Controller
     {
         public IActionResult Index()
         {
-            return View();
+            return View(new HomepageViewModel { UpcomingTalks = new List<TalkDbEntity>() });
         }
 
         public IActionResult About()
         {
             ViewBag.Message = "Your application description page.";
-
+            
             return View();
         }
 

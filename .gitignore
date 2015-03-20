@@ -1,0 +1,13 @@
+.vs
+artifacts
+
+src/PopularizaceCz/PopularizaceCz.kproj.user
+
+src/PopularizaceCz/bower_components
+src/PopularizaceCz/node_modules
+
+src/PopularizaceCz/wwwroot/bin
+src/PopularizaceCz/wwwroot/lib
+
+Database/bin
+Database/obj
