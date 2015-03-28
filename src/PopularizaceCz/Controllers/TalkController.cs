@@ -8,6 +8,7 @@ using PopularizaceCz.Database;
 using PopularizaceCz.Helpers;
 using System.Data;
 using Dapper;
+using System.Threading.Tasks;
 
 namespace PopularizaceCz.Controllers
 {
@@ -20,11 +21,11 @@ namespace PopularizaceCz.Controllers
             this._db = db;
         }
 
-        public IActionResult Show(int id)
+        public async Task<IActionResult> Show(int id)
         {
-            var talk = this._db.Query<TalkDbEntity>("SELECT * FROM [Talk] WHERE [Id]=@Id", new { Id = id }).Single();
+            var talk = (await this._db.QueryAsync<TalkDbModel>("SELECT * FROM [Talk] WHERE [Id]=@Id", new { Id = id })).Single();
             
-            return View(new TalkViewModel { Id = talk.Id, Name = talk.Name });
+            return View(new TalkViewModel { DbModel = talk });
         }
     }
 }

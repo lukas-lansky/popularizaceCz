@@ -49,6 +49,8 @@ namespace PopularizaceCz
             });
 
             services.AddScoped<IPersonRepository, PersonRepository>();
+
+            services.AddScoped<ITalkRepository, TalkRepository>();
         }
         
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerfactory, IAppConfiguration appConfig)

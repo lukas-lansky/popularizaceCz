@@ -6,10 +6,11 @@ using System.Collections.Generic;
 using System.Data;
 using Dapper;
 using PopularizaceCz.Helpers;
+using System.Threading.Tasks;
 
 namespace PopularizaceCz.Repositories
 {
-    public sealed class TalkRepository
+    public sealed class TalkRepository : ITalkRepository
     {
         private IDbConnection _db;
 
@@ -18,9 +19,9 @@ namespace PopularizaceCz.Repositories
             this._db = db;
         }
 
-        public IEnumerable<TalkDbEntity> GetUpcomingTalks(int take = 10)
+        public async Task<IEnumerable<TalkDbEntity>> GetUpcomingTalks(int take = 10)
         {
-            return this._db.Query<TalkDbEntity>("SELECT TOP {0} * FROM [Talk] ORDER BY [Start] DESC".FormatWith(take));
+            return await this._db.QueryAsync<TalkDbEntity>("SELECT TOP {0} * FROM [Talk] WHERE [Start] > GETDATE() ORDER BY [Start] ASC".FormatWith(take));
         }
     }
 }

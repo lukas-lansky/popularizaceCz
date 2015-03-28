@@ -14,17 +14,21 @@ namespace PopularizaceCz.Controllers
     {
         private IPersonRepository _persons { get; set; }
 
-        public HomeController(IPersonRepository persons)
+        private ITalkRepository _talks { get; set; }
+
+        public HomeController(IPersonRepository persons, ITalkRepository talks)
         {
             if (persons == null) throw new ArgumentNullException();
+            if (talks == null) throw new ArgumentNullException();
 
             this._persons = persons;
+            this._talks = talks;
         }
 
         public async Task<IActionResult> Index()
         {
             return View(new HomepageViewModel {
-                UpcomingTalks = new List<TalkDbEntity>(),
+                UpcomingTalks = await this._talks.GetUpcomingTalks(),
                 FrequentSpeakers = await this._persons.GetPersonsWithMostTalks() });
         }
 

@@ -4,8 +4,8 @@ using System.ComponentModel.DataAnnotations;
 
 namespace PopularizaceCz.ViewModels
 {
-    public sealed class TalkViewModel
+    public sealed class PersonViewModel
     {
-        public TalkDbModel DbModel { get; set; }
+        public PersonDbModel DbModel { get; set; }
     }
 }
