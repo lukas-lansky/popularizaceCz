@@ -7,5 +7,7 @@ namespace PopularizaceCz.ViewModels
     public sealed class HomepageViewModel
     {
         public IEnumerable<TalkDbEntity> UpcomingTalks { get; set; }
+
+        public IEnumerable<PersonDbModel> FrequentSpeakers { get; set; }
     }
 }

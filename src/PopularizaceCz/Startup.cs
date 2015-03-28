@@ -13,6 +13,7 @@ using System.Data;
 using System.Data.SqlClient;
 using StackExchange.Profiling;
 using StackExchange.Profiling.Data;
+using PopularizaceCz.Repositories;
 
 namespace PopularizaceCz
 {
@@ -46,6 +47,8 @@ namespace PopularizaceCz
 
                 return new ProfiledDbConnection(sqlConn, MiniProfiler.Current);
             });
+
+            services.AddScoped<IPersonRepository, PersonRepository>();
         }
         
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerfactory, IAppConfiguration appConfig)

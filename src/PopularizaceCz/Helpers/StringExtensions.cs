@@ -15,10 +15,10 @@ namespace PopularizaceCz.Helpers
         {
             return string.IsNullOrWhiteSpace(s);
         }
-
-        public static string JoinToString(this IEnumerable<string> strings, string delimiter = ",")
+        
+        public static string JoinToString<T>(this IEnumerable<T> objects, string delimiter = ",")
         {
-            return string.Join(delimiter, strings);
+            return string.Join(delimiter, objects.Select(s => s.ToString()));
         }
 
         public static string FormatWith(this string s, params object[] ps)

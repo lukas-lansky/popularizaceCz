@@ -5,14 +5,27 @@ using Microsoft.AspNet.Mvc;
 using PopularizaceCz.Database.Infrastructure;
 using PopularizaceCz.ViewModels;
 using PopularizaceCz.Database;
+using PopularizaceCz.Repositories;
+using System.Threading.Tasks;
 
 namespace PopularizaceCz.Controllers
 {
     public sealed class HomeController : Controller
     {
-        public IActionResult Index()
+        private IPersonRepository _persons { get; set; }
+
+        public HomeController(IPersonRepository persons)
         {
-            return View(new HomepageViewModel { UpcomingTalks = new List<TalkDbEntity>() });
+            if (persons == null) throw new ArgumentNullException();
+
+            this._persons = persons;
+        }
+
+        public async Task<IActionResult> Index()
+        {
+            return View(new HomepageViewModel {
+                UpcomingTalks = new List<TalkDbEntity>(),
+                FrequentSpeakers = await this._persons.GetPersonsWithMostTalks() });
         }
 
         public IActionResult About()

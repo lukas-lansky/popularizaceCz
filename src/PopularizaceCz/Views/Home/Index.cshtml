@@ -80,8 +80,10 @@
     <div class="col-md-4">
         <h2>Záznamy podle osobností</h2>
         <ul>
-            <li>Jaroslav Flegr (3 přednášky)</li>
-            <li>...</li>
+            @foreach (var speaker in this.Model.FrequentSpeakers)
+            {
+                <li>@speaker.Name</li>
+            }
         </ul>
 
         <h2>Záznamy podle témat</h2>

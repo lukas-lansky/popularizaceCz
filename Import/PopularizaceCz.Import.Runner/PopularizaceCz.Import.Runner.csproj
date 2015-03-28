@@ -48,7 +48,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Import\PopularizaceCz.Import.Common\PopularizaceCz.Import.Common.csproj">
+    <ProjectReference Include="..\PopularizaceCz.Import.Common\PopularizaceCz.Import.Common.csproj">
       <Project>{d7f4d463-9eb9-424e-aa49-fa0ac39f1e9c}</Project>
       <Name>PopularizaceCz.Import.Common</Name>
     </ProjectReference>
