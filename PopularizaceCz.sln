@@ -14,6 +14,14 @@ Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "PopularizaceCz", "src\Popul
 EndProject
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "Database", "Database\Database.sqlproj", "{626A9801-3141-4CDF-B33F-7236A017C7D5}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Import", "Import", "{3CB56805-AF2C-47A4-A8EF-06FB72478A4F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PopularizaceCz.Import.Common", "Import\PopularizaceCz.Import.Common\PopularizaceCz.Import.Common.csproj", "{D7F4D463-9EB9-424E-AA49-FA0AC39F1E9C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PopularizaceCz.Import.BioCtvrtky", "Import\PopularizaceCz.Import.BioCtvrtky\PopularizaceCz.Import.BioCtvrtky.csproj", "{9F7583E6-02B3-4FB0-9A22-D1516C3CB1C7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PopularizaceCz.Import.Runner", "Import\PopularizaceCz.Import.Runner\PopularizaceCz.Import.Runner.csproj", "{0CF45ACC-FDDA-451F-8435-717D40B2F589}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -30,11 +38,26 @@ Global
 		{626A9801-3141-4CDF-B33F-7236A017C7D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{626A9801-3141-4CDF-B33F-7236A017C7D5}.Release|Any CPU.Build.0 = Release|Any CPU
 		{626A9801-3141-4CDF-B33F-7236A017C7D5}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{D7F4D463-9EB9-424E-AA49-FA0AC39F1E9C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D7F4D463-9EB9-424E-AA49-FA0AC39F1E9C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D7F4D463-9EB9-424E-AA49-FA0AC39F1E9C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D7F4D463-9EB9-424E-AA49-FA0AC39F1E9C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9F7583E6-02B3-4FB0-9A22-D1516C3CB1C7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9F7583E6-02B3-4FB0-9A22-D1516C3CB1C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9F7583E6-02B3-4FB0-9A22-D1516C3CB1C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9F7583E6-02B3-4FB0-9A22-D1516C3CB1C7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0CF45ACC-FDDA-451F-8435-717D40B2F589}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0CF45ACC-FDDA-451F-8435-717D40B2F589}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0CF45ACC-FDDA-451F-8435-717D40B2F589}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0CF45ACC-FDDA-451F-8435-717D40B2F589}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{389764D6-4465-4889-B25A-494B8D3BD251} = {9DB7F5DE-2022-47F3-B67E-B3F215E9B062}
+		{D7F4D463-9EB9-424E-AA49-FA0AC39F1E9C} = {3CB56805-AF2C-47A4-A8EF-06FB72478A4F}
+		{9F7583E6-02B3-4FB0-9A22-D1516C3CB1C7} = {3CB56805-AF2C-47A4-A8EF-06FB72478A4F}
+		{0CF45ACC-FDDA-451F-8435-717D40B2F589} = {3CB56805-AF2C-47A4-A8EF-06FB72478A4F}
 	EndGlobalSection
 EndGlobal
