@@ -19,6 +19,19 @@ namespace PopularizaceCz.Repositories
             this._db = db;
         }
 
+        public async Task<PersonDbModel> GetById(int id)
+        {
+            var person = (await this._db.QueryAsync<PersonDbEntity>(
+                @"SELECT * FROM [Person] WHERE [Id] = @PersonId",
+                new { PersonId = id })).Single();
+
+            var talks = await this._db.QueryAsync<TalkDbEntity>(
+                @"SELECT t.* FROM [Talk] t INNER JOIN [TalkSpeaker] ts ON ts.[TalkId] = t.[Id] WHERE ts.[PersonId] = @PersonId",
+                new { PersonId = id });
+
+            return new PersonDbModel(person, talks, new List<OrganizationDbEntity>());
+        }
+
         public async Task<IEnumerable<PersonDbModel>> GetPersonsWithMostTalks(int take = 10)
         {
             var persons = await this._db.QueryAsync<PersonDbEntity>(@"
