@@ -1,6 +1,6 @@
 ﻿CREATE TABLE [dbo].[PersonAffiliation]
 (
-	[Id] INT NOT NULL PRIMARY KEY,
+	[Id] INT NOT NULL PRIMARY KEY IDENTITY(1, 1),
 	[PersonId] INT NOT NULL,
 	[OrganizationId] INT NOT NULL,
 	[MainAffiliation] BIT NOT NULL DEFAULT (0),

@@ -1,6 +1,6 @@
 ﻿CREATE TABLE [dbo].[TalkSpeaker]
 (
-	[Id] INT NOT NULL PRIMARY KEY,
+	[Id] INT NOT NULL PRIMARY KEY IDENTITY(1, 1),
 	[TalkId] INT NOT NULL,
 	[PersonId] INT NOT NULL,
 	CONSTRAINT [FK_TalkSpeaker_Talk] FOREIGN KEY ([TalkId]) REFERENCES [Talk]([Id]),
