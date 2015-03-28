@@ -27,7 +27,7 @@ namespace PopularizaceCz.Services.Configuration
         {
             get
             {
-                var cs = this._config.Get("Data.DefaultConnection.ConnectionString");
+                var cs = this._config.Get("ConnectionString");
 
                 if (cs.IsNullOrWhitespace())
                 {

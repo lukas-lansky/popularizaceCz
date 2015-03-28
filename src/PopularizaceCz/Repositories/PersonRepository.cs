@@ -25,7 +25,7 @@ namespace PopularizaceCz.Repositories
                 SELECT TOP {0} p.[Id], p.[Name], COUNT(t.[Id]) FROM [Talk] t
                 INNER JOIN [TalkSpeaker] ts ON t.[Id] = ts.[TalkId]
                 INNER JOIN [Person] p ON ts.[PersonId] = p.[Id]
-                GROUP BY p.[Name]
+                GROUP BY p.[Id], p.[Name]
                 ORDER BY COUNT(t.[Id]) DESC".FormatWith(take));
 
             return await this.CreateDbModel(persons);

@@ -12,8 +12,8 @@ namespace PopularizaceCz.Database
         {
             this.Id = e.Id;
             this.Name = e.Name;
-            // this.Talks = talks.ToList();
-            // this.Organizations = orgs.ToList();
+            this.Talks = talks.ToList();
+            this.Organizations = orgs.ToList();
         }
 
         public IReadOnlyCollection<TalkDbEntity> Talks { get; set; }
