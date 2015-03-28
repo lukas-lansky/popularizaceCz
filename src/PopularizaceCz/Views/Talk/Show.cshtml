@@ -1,0 +1,27 @@
+﻿@model PopularizaceCz.ViewModels.TalkViewModel
+@using PopularizaceCz.Helpers
+@{
+    ViewBag.Title = ("Přednáška: " + Model.DbModel.Name);
+}
+
+<h2>Přednáška: @Model.DbModel.Name</h2>
+
+<p>Termín: @Model.DbModel.Start.ToString("d. M. yyyy")</p>
+
+<p>Místo konání: @Model.DbModel.Venue.Name</p>
+
+@if (Model.DbModel.Speakers.Count == 1)
+{
+    var speaker = Model.DbModel.Speakers.First();
+
+    <p>Přednášející: @Html.ActionLink(speaker.Name, "Show", "Person", new { id = speaker.Id })</p>
+}
+else if (Model.DbModel.Speakers.Count > 1)
+{
+    <ul>
+        @foreach (var speaker in Model.DbModel.Speakers)
+        {
+            <li>Přednášející: @Html.ActionLink(speaker.Name, "Show", "Person", new { id = speaker.Id })</li>
+        }
+    </ul>
+}

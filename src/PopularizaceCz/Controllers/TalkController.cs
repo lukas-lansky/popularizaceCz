@@ -9,23 +9,22 @@ using PopularizaceCz.Helpers;
 using System.Data;
 using Dapper;
 using System.Threading.Tasks;
+using PopularizaceCz.Repositories;
 
 namespace PopularizaceCz.Controllers
 {
     public sealed class TalkController : Controller
     {
-        private IDbConnection _db;
+        private ITalkRepository _talks;
 
-        public TalkController(IDbConnection db)
+        public TalkController(ITalkRepository talks)
         {
-            this._db = db;
+            this._talks = talks;
         }
 
         public async Task<IActionResult> Show(int id)
         {
-            var talk = (await this._db.QueryAsync<TalkDbModel>("SELECT * FROM [Talk] WHERE [Id]=@Id", new { Id = id })).Single();
-            
-            return View(new TalkViewModel { DbModel = talk });
+            return View(new TalkViewModel { DbModel = await this._talks.GetById(id) });
         }
     }
 }

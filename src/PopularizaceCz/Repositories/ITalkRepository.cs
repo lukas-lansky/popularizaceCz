@@ -7,6 +7,8 @@ namespace PopularizaceCz.Repositories
 {
     public interface ITalkRepository
     {
+        Task<TalkDbModel> GetById(int id);
+
         Task<IEnumerable<TalkDbEntity>> GetUpcomingTalks(int take = 10);
     }
 }
