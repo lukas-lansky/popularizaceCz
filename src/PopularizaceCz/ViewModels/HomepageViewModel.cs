@@ -9,5 +9,7 @@ namespace PopularizaceCz.ViewModels
         public IEnumerable<TalkDbEntity> UpcomingTalks { get; set; }
 
         public IEnumerable<PersonDbModel> FrequentSpeakers { get; set; }
+
+        public IEnumerable<OrganizationDbModel> FrequentOrganizers { get; set; }
     }
 }

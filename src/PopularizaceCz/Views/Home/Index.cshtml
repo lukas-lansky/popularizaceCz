@@ -1,4 +1,4 @@
-﻿@Model PopularizaceCz.ViewModels.HomepageViewModel
+﻿@model PopularizaceCz.ViewModels.HomepageViewModel
 @{
     ViewBag.Title = "Přehled";
 }
@@ -82,7 +82,7 @@
         <ul>
             @foreach (var speaker in this.Model.FrequentSpeakers)
             {
-                <li>@speaker.Name</li>
+                <li>@Html.ActionLink(speaker.Name, "Show", "Speaker") (@speaker.Talks.Count)</li>
             }
         </ul>
 

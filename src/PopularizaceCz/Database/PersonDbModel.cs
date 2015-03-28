@@ -3,6 +3,7 @@ using System;
 using System.Linq;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
+using PopularizaceCz.Helpers;
 
 namespace PopularizaceCz.Database
 {
@@ -10,8 +11,8 @@ namespace PopularizaceCz.Database
     {
         public PersonDbModel(PersonDbEntity e, IEnumerable<TalkDbEntity> talks, IEnumerable<OrganizationDbEntity> orgs)
         {
-            this.Id = e.Id;
-            this.Name = e.Name;
+            e.MapTo(this);
+
             this.Talks = talks.ToList();
             this.Organizations = orgs.ToList();
         }

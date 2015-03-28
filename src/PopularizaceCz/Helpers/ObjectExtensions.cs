@@ -7,7 +7,6 @@ namespace PopularizaceCz.Helpers
 {
     public static class ObjectExtensions
     {
-        /*
         public static V MapTo<U, V>(this U source, V target = null)
             where U : class
             where V : class
@@ -21,6 +20,5 @@ namespace PopularizaceCz.Helpers
                 return ObjectMapperManager.DefaultInstance.GetMapper<U, V>().Map(source, target);
             }
         }
-        */
     }
 }
