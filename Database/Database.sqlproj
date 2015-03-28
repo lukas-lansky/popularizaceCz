@@ -71,6 +71,7 @@
     <Build Include="Category.sql" />
     <Build Include="CategoryRelation.sql" />
     <Build Include="TalkCategory.sql" />
+    <Build Include="OrganizationRelation.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Data\InitialData.sql" />
