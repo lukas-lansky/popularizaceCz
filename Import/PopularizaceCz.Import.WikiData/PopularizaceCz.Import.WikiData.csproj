@@ -4,16 +4,15 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{0CF45ACC-FDDA-451F-8435-717D40B2F589}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <ProjectGuid>{5653BE58-88A5-4CA1-99BD-C983C3BA0B6E}</ProjectGuid>
+    <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>PopularizaceCz.Import.Runner</RootNamespace>
-    <AssemblyName>PopularizaceCz.Import.Runner</AssemblyName>
+    <RootNamespace>PopularizaceCz.Import.WikiData</RootNamespace>
+    <AssemblyName>PopularizaceCz.Import.WikiData</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -23,7 +22,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -32,6 +30,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Dapper">
+      <HintPath>..\..\packages\Dapper.1.39\lib\net45\Dapper.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -41,25 +42,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Program.cs" />
+    <Compile Include="WikiDataImporter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
+    <ProjectReference Include="..\..\WikiDataNet\WikiDataNet.csproj">
+      <Project>{0ac3353e-4476-41fd-8329-d3408a52a4d2}</Project>
+      <Name>WikiDataNet</Name>
+    </ProjectReference>
     <ProjectReference Include="..\PopularizaceCz.Import.Common\PopularizaceCz.Import.Common.csproj">
       <Project>{d7f4d463-9eb9-424e-aa49-fa0ac39f1e9c}</Project>
       <Name>PopularizaceCz.Import.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\PopularizaceCz.Import.BioCtvrtky\PopularizaceCz.Import.BioCtvrtky.csproj">
-      <Project>{9f7583e6-02b3-4fb0-9a22-d1516c3cb1c7}</Project>
-      <Name>PopularizaceCz.Import.BioCtvrtky</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\PopularizaceCz.Import.WikiData\PopularizaceCz.Import.WikiData.csproj">
-      <Project>{5653be58-88a5-4ca1-99bd-c983c3ba0b6e}</Project>
-      <Name>PopularizaceCz.Import.WikiData</Name>
-    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
