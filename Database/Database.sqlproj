@@ -8,7 +8,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectVersion>4.1</ProjectVersion>
     <ProjectGuid>{626a9801-3141-4cdf-b33f-7236a017c7d5}</ProjectGuid>
-    <DSP>Microsoft.Data.Tools.Schema.Sql.Sql120DatabaseSchemaProvider</DSP>
+    <DSP>Microsoft.Data.Tools.Schema.Sql.SqlAzureDatabaseSchemaProvider</DSP>
     <OutputType>Database</OutputType>
     <RootPath>
     </RootPath>
@@ -78,5 +78,6 @@
     <None Include="Data\InitialData.sql" />
     <None Include="Data\TestData.sql" />
     <None Include="Connections\Local.publish.xml" />
+    <None Include="Connections\Azure.publish.xml" />
   </ItemGroup>
 </Project>

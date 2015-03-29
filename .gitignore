@@ -8,6 +8,8 @@ src/PopularizaceCz/node_modules
 src/PopularizaceCz/wwwroot/bin
 src/PopularizaceCz/wwwroot/lib
 
+Database/Connections/Azure.publish.xml
+
 # User-specific files
 
 *.suo
