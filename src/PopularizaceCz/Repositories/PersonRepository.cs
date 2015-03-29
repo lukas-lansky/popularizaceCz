@@ -48,6 +48,11 @@ namespace PopularizaceCz.Repositories
         {
             var personIds = pes.Select(pe => pe.Id);
 
+            if (!personIds.Any())
+            {
+                personIds = new List<int> { -1 };
+            }
+
             var allTalks = await this._db.QueryAsync(string.Format(@"
                 SELECT t.*, ts.[PersonId]
                 FROM [Talk] t
