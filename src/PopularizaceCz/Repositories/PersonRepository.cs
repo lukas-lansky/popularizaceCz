@@ -49,10 +49,10 @@ namespace PopularizaceCz.Repositories
             var personIds = pes.Select(pe => pe.Id);
 
             var allTalks = await this._db.QueryAsync(string.Format(@"
-SELECT t.*, ts.[PersonId]
-FROM [Talk] t
-INNER JOIN [TalkSpeaker] ts ON t.[Id] = ts.[TalkId]
-WHERE ts.[PersonId] IN ({0})", personIds.JoinToString()));
+                SELECT t.*, ts.[PersonId]
+                FROM [Talk] t
+                INNER JOIN [TalkSpeaker] ts ON t.[Id] = ts.[TalkId]
+                WHERE ts.[PersonId] IN ({0})", personIds.JoinToString()));
             var groupedTalks = allTalks
                 .GroupBy(r => (int)r.PersonId)
                 .ToDictionary(g => g.Key, g => g.Select(d => (TalkDbEntity)d.MapTo<dynamic, TalkDbEntity>()));
