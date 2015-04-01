@@ -56,10 +56,6 @@
       <Project>{9f7583e6-02b3-4fb0-9a22-d1516c3cb1c7}</Project>
       <Name>PopularizaceCz.Import.BioCtvrtky</Name>
     </ProjectReference>
-    <ProjectReference Include="..\PopularizaceCz.Import.WikiData\PopularizaceCz.Import.WikiData.csproj">
-      <Project>{5653be58-88a5-4ca1-99bd-c983c3ba0b6e}</Project>
-      <Name>PopularizaceCz.Import.WikiData</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

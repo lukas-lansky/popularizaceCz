@@ -1,5 +1,4 @@
-﻿using PopularizaceCz.Import.WikiData;
-using PopularizaceCz.Import.BioCtvrtky;
+﻿using PopularizaceCz.Import.BioCtvrtky;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -14,12 +13,12 @@ namespace PopularizaceCz.Import.Runner
         static void Main(string[] args)
         {
             var bcTask = new BioCtvrtkyImport().Import();
-            var wdTask = new WikiDataImporter().Import();
+			// var wdTask = new WikiDataImporter().Import();
 
-            Task.WaitAll(bcTask, wdTask);
+			Task.WaitAll(bcTask); //, wdTask);
 
             File.WriteAllText("bc.sql", bcTask.Result);
-            File.WriteAllText("wd.sql", wdTask.Result);
+            // File.WriteAllText("wd.sql", wdTask.Result);
         }
     }
 }

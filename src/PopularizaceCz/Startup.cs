@@ -14,6 +14,7 @@ using System.Data.SqlClient;
 using StackExchange.Profiling;
 using StackExchange.Profiling.Data;
 using PopularizaceCz.Repositories;
+using PopularizaceCz.Services.ICalExport;
 
 namespace PopularizaceCz
 {
@@ -47,6 +48,8 @@ namespace PopularizaceCz
 
                 return new ProfiledDbConnection(sqlConn, MiniProfiler.Current);
             });
+
+			services.AddScoped<IICalExporter, DDayICalExporter>();
 
             services.AddScoped<IPersonRepository, PersonRepository>();
 

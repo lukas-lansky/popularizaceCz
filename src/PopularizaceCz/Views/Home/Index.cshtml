@@ -75,6 +75,8 @@
                 <li>@Html.ActionLink(p.Name, "Show", "Talk", new { id = p.Id }) (@p.Start.ToString("d. M."))</li>
             }
         </ul>
+
+		<p style="text-align: right">@Html.ActionLink("iCal export", "ExportUpcoming", "Talk")</p>
     </div>
     
     <div class="col-md-4">

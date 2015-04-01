@@ -46,10 +46,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\WikiDataNet\WikiDataNet.csproj">
-      <Project>{0ac3353e-4476-41fd-8329-d3408a52a4d2}</Project>
-      <Name>WikiDataNet</Name>
-    </ProjectReference>
     <ProjectReference Include="..\PopularizaceCz.Import.Common\PopularizaceCz.Import.Common.csproj">
       <Project>{d7f4d463-9eb9-424e-aa49-fa0ac39f1e9c}</Project>
       <Name>PopularizaceCz.Import.Common</Name>

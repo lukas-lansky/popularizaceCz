@@ -36,7 +36,11 @@ namespace PopularizaceCz.Repositories
 
         public async Task<IEnumerable<TalkDbEntity>> GetUpcomingTalks(int take = 10)
         {
-            return await this._db.QueryAsync<TalkDbEntity>("SELECT TOP {0} * FROM [Talk] WHERE [Start] > GETDATE() ORDER BY [Start] ASC".FormatWith(take));
+            return await this._db.QueryAsync<TalkDbEntity>(@"
+				SELECT TOP {0} *
+				FROM [Talk]
+				WHERE [Start] > GETDATE()
+				ORDER BY [Start] ASC".FormatWith(take));
         }
     }
 }

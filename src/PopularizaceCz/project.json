@@ -18,7 +18,8 @@
         "Dapper": "1.39",
         "MiniProfiler": "3.1.1.140",
         "Kestrel": "1.0.0-beta3",
-        "Microsoft.AspNet.Hosting": "1.0.0-beta3"
+        "Microsoft.AspNet.Hosting": "1.0.0-beta3",
+        "DDay.iCal": "1.0.2.575"
     },
     "commands": {
         "web": "Microsoft.AspNet.Hosting --server Microsoft.AspNet.Server.WebListener --server.urls http://localhost:5000",

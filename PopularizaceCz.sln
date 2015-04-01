@@ -22,10 +22,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PopularizaceCz.Import.BioCt
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PopularizaceCz.Import.Runner", "Import\PopularizaceCz.Import.Runner\PopularizaceCz.Import.Runner.csproj", "{0CF45ACC-FDDA-451F-8435-717D40B2F589}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WikiDataNet", "WikiDataNet\WikiDataNet.csproj", "{0AC3353E-4476-41FD-8329-D3408A52A4D2}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PopularizaceCz.Import.WikiData", "Import\PopularizaceCz.Import.WikiData\PopularizaceCz.Import.WikiData.csproj", "{5653BE58-88A5-4CA1-99BD-C983C3BA0B6E}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -54,14 +50,6 @@ Global
 		{0CF45ACC-FDDA-451F-8435-717D40B2F589}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0CF45ACC-FDDA-451F-8435-717D40B2F589}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0CF45ACC-FDDA-451F-8435-717D40B2F589}.Release|Any CPU.Build.0 = Release|Any CPU
-		{0AC3353E-4476-41FD-8329-D3408A52A4D2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0AC3353E-4476-41FD-8329-D3408A52A4D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0AC3353E-4476-41FD-8329-D3408A52A4D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0AC3353E-4476-41FD-8329-D3408A52A4D2}.Release|Any CPU.Build.0 = Release|Any CPU
-		{5653BE58-88A5-4CA1-99BD-C983C3BA0B6E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5653BE58-88A5-4CA1-99BD-C983C3BA0B6E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5653BE58-88A5-4CA1-99BD-C983C3BA0B6E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5653BE58-88A5-4CA1-99BD-C983C3BA0B6E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -71,6 +59,5 @@ Global
 		{D7F4D463-9EB9-424E-AA49-FA0AC39F1E9C} = {3CB56805-AF2C-47A4-A8EF-06FB72478A4F}
 		{9F7583E6-02B3-4FB0-9A22-D1516C3CB1C7} = {3CB56805-AF2C-47A4-A8EF-06FB72478A4F}
 		{0CF45ACC-FDDA-451F-8435-717D40B2F589} = {3CB56805-AF2C-47A4-A8EF-06FB72478A4F}
-		{5653BE58-88A5-4CA1-99BD-C983C3BA0B6E} = {3CB56805-AF2C-47A4-A8EF-06FB72478A4F}
 	EndGlobalSection
 EndGlobal
