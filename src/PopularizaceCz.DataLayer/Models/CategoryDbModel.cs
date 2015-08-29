@@ -1,10 +1,7 @@
-﻿using Dapper;
-using PopularizaceCz.Database.Infrastructure;
-using System;
-using System.Collections;
+﻿using PopularizaceCz.DataLayer.Entities;
 using System.Collections.Generic;
 
-namespace PopularizaceCz.Database
+namespace PopularizaceCz.DataLayer.Models
 {
     public class CategoryDbModel
     {

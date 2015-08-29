@@ -1,9 +1,6 @@
-﻿using PopularizaceCz.Database.Infrastructure;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using System;
 
-namespace PopularizaceCz.Database
+namespace PopularizaceCz.DataLayer.Entities
 {
     public class TalkDbEntity : IDbEntity
     {

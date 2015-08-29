@@ -22,11 +22,11 @@
     "Microsoft.Framework.Logging": "1.0.0-beta6",
     "Microsoft.Framework.Logging.Console": "1.0.0-beta6",
     "EmitMapper": "1.0.0",
-    "Dapper": "1.39",
     "MiniProfiler": "3.1.1.140",
     "Kestrel": "1.0.0-beta6",
     "Microsoft.AspNet.Hosting": "1.0.0-beta6",
-    "DDay.iCal": "1.0.2.575"
+    "DDay.iCal": "1.0.2.575",
+    "PopularizaceCz.DataLayer": "1.0.0-*"
   },
   "commands": {
     "web": "Microsoft.AspNet.Hosting --server Microsoft.AspNet.Server.WebListener --server.urls http://localhost:5000",

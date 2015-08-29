@@ -1,9 +1,8 @@
-﻿using PopularizaceCz.Database;
-using System;
+﻿using PopularizaceCz.DataLayer.Models;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace PopularizaceCz.Repositories
+namespace PopularizaceCz.DataLayer.Repositories
 {
     public interface IPersonRepository
     {

@@ -7,10 +7,10 @@ using System.Data;
 using System.Data.SqlClient;
 using StackExchange.Profiling;
 using StackExchange.Profiling.Data;
-using PopularizaceCz.Repositories;
 using PopularizaceCz.Services.ICalExport;
 using Microsoft.Framework.Configuration;
 using Microsoft.Framework.Runtime;
+using PopularizaceCz.DataLayer.Repositories;
 
 namespace PopularizaceCz
 {

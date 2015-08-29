@@ -1,16 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using Microsoft.AspNet.Mvc;
-using PopularizaceCz.Database.Infrastructure;
 using PopularizaceCz.ViewModels;
-using PopularizaceCz.Database;
-using PopularizaceCz.Helpers;
-using System.Data;
-using Dapper;
 using System.Threading.Tasks;
-using PopularizaceCz.Repositories;
 using PopularizaceCz.Services.ICalExport;
+using PopularizaceCz.DataLayer.Repositories;
 
 namespace PopularizaceCz.Controllers
 {

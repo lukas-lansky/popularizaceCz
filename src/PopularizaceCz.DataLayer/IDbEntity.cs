@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace PopularizaceCz.Database.Infrastructure
+﻿namespace PopularizaceCz.DataLayer
 {
     public interface IDbEntity
     {

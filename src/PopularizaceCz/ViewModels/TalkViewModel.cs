@@ -1,6 +1,4 @@
-﻿using PopularizaceCz.Database;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+﻿using PopularizaceCz.DataLayer.Models;
 
 namespace PopularizaceCz.ViewModels
 {

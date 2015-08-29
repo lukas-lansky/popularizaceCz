@@ -1,6 +1,5 @@
 ﻿using DDay.iCal;
 using DDay.iCal.Serialization.iCalendar;
-using System;
 using System.Collections.Generic;
 
 namespace PopularizaceCz.Services.ICalExport

@@ -1,14 +1,13 @@
-﻿using PopularizaceCz.Database;
-using PopularizaceCz.Database.Infrastructure;
-using System;
-using System.Linq;
+﻿using System.Linq;
 using System.Collections.Generic;
 using System.Data;
 using Dapper;
 using PopularizaceCz.Helpers;
 using System.Threading.Tasks;
+using PopularizaceCz.DataLayer.Models;
+using PopularizaceCz.DataLayer.Entities;
 
-namespace PopularizaceCz.Repositories
+namespace PopularizaceCz.DataLayer.Repositories
 {
     public sealed class TalkRepository : ITalkRepository
     {

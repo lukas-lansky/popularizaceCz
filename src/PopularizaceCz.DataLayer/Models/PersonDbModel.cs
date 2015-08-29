@@ -1,11 +1,9 @@
-﻿using PopularizaceCz.Database.Infrastructure;
-using System;
-using System.Linq;
+﻿using System.Linq;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
+using PopularizaceCz.DataLayer.Entities;
 using PopularizaceCz.Helpers;
 
-namespace PopularizaceCz.Database
+namespace PopularizaceCz.DataLayer.Models
 {
     public class PersonDbModel : PersonDbEntity
     {
