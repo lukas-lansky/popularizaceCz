@@ -11,17 +11,38 @@ namespace PopularizaceCz.Controllers
     {
         private ITalkRepository _talks;
 
+        private IPersonRepository _persons;
+
+        private IOrganizationRepository _organizations;
+
 		private IICalExporter _iCalExporter;
 
-        public TalkController(ITalkRepository talks, IICalExporter iCalExporter)
+        public TalkController(ITalkRepository talks, IPersonRepository persons, IOrganizationRepository organizations, IICalExporter iCalExporter)
         {
             this._talks = talks;
+            this._persons = persons;
+            this._organizations = organizations;
 			this._iCalExporter = iCalExporter;
         }
 
         public async Task<IActionResult> Show(int id)
         {
             return View(new TalkViewModel { DbModel = await this._talks.GetById(id) });
+        }
+
+        public async Task<IActionResult> Edit(int id, TalkEditViewModel model)
+        {
+            if (!string.IsNullOrEmpty(model?.DbModel?.Name))
+            {
+                model.DbModel.Id = id;
+
+                await this._talks.Update(model.DbModel);
+            }
+
+            return View(new TalkEditViewModel {
+                DbModel = await this._talks.GetById(id),
+                AllSpeakers = await this._persons.GetAllPersons(),
+                AllOrganizations = await this._organizations.GetAllOrganizations() });
         }
 		
 		public async Task<IActionResult> ExportUpcoming(string format = "ical")

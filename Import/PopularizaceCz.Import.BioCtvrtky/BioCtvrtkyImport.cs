@@ -1,9 +1,7 @@
 ﻿using HtmlAgilityPack;
 using PopularizaceCz.Import.Common;
 using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
@@ -69,10 +67,20 @@ END");
             var cells = row.SelectNodes("td");
 
             DateTime date = new DateTime(1900, 1, 1);
-            DateTime.TryParseExact(cells[0].InnerText.Replace("&nbsp;", "").Trim(), "dd. MM. yyyy", CultureInfo.InvariantCulture, DateTimeStyles.AllowInnerWhite, out date);
+            DateTime.TryParseExact(
+                cells[0].InnerText.Replace("&nbsp;", "").Trim(),
+                "dd. MM. yyyy",
+                CultureInfo.InvariantCulture,
+                DateTimeStyles.AllowInnerWhite,
+                out date);
 
             var speaker = cells[1].InnerText.Replace("&nbsp;", "").Trim();
             var name = cells[2].InnerText.Replace("&nbsp;", "").Trim();
+
+            if (string.IsNullOrEmpty(speaker) || string.IsNullOrEmpty(name))
+            {
+                return;
+            }
 
             query.AppendLine(string.Format(@"
 IF NOT EXISTS (SELECT 1 FROM [Person] WHERE [Name]=N'{1}')

@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="~/lib/bootstrap/css/bootstrap.css" />
     <link rel="stylesheet" href="~/css/site.css" />
     <link rel="stylesheet" href="~/lib/bootstrap-touch-carousel/css/bootstrap-touch-carousel.css" />
+    <link rel="stylesheet" href="~/lib/chosen/css/chosen.min.css" />
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -36,10 +37,18 @@
             <p>Stránku naprogramoval a spravuje <a href="http://lukas.lansky.name">Lukáš Lánský</a>.</p>
         </footer>
     </div>
+
     <script src="~/lib/jquery/jquery.js"></script>
     <script src="~/lib/bootstrap/js/bootstrap.js"></script>
     <script src="~/lib/hammer.js/hammer.js"></script>
     <script src="~/lib/bootstrap-touch-carousel/js/bootstrap-touch-carousel.js"></script>
+    <script src="~/lib/chosen/js/chosen.jquery.min.js"></script>
     @RenderSection("scripts", required: false)
+
+    <script>
+        $(function () {
+            $(".chosen-select").chosen();
+        })
+    </script>
 </body>
 </html>

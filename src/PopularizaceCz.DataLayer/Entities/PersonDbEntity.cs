@@ -1,4 +1,6 @@
-﻿namespace PopularizaceCz.DataLayer.Entities
+﻿using System;
+
+namespace PopularizaceCz.DataLayer.Entities
 {
     public class PersonDbEntity : IDbEntity
     {

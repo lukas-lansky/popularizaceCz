@@ -7,6 +7,11 @@ namespace PopularizaceCz.DataLayer.Models
 {
     public class TalkDbModel : TalkDbEntity
     {
+        public TalkDbModel()
+        {
+
+        }
+
         public TalkDbModel(TalkDbEntity e, VenueDbEntity venue, IEnumerable<PersonDbEntity> speakers)
         {
             e.MapTo(this);
@@ -16,11 +21,13 @@ namespace PopularizaceCz.DataLayer.Models
             this.Speakers = speakers.ToList();
         }
 
-        public IReadOnlyCollection<PersonDbEntity> Speakers { get; set; }
+        public IList<PersonDbEntity> Speakers { get; set; }
 
-        public IReadOnlyCollection<OrganizationDbEntity> Organizers { get; set; }
+        public IList<OrganizationDbEntity> Organizers { get; set; }
 
-        public IReadOnlyCollection<CategoryDbEntity> DirectCategories { get; set; }
+        public IList<CategoryDbEntity> DirectCategories { get; set; }
+
+        public IList<TalkRecordingDbEntity> Recordings { get; set; }
 
         public VenueDbEntity Venue { get; set; }
     }

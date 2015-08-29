@@ -73,6 +73,7 @@
     <Build Include="TalkCategory.sql" />
     <Build Include="OrganizationRelation.sql" />
     <Build Include="PersonWikidata.sql" />
+    <Build Include="TalkRecording.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Data\InitialData.sql" />

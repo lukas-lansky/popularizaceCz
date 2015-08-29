@@ -7,7 +7,7 @@ namespace PopularizaceCz.DataLayer.Entities
         public int Id { get; set; }
 
         public string Name { get; set; }
-
+        
         public DateTime Start { get; set; }
 
         public int VenueId { get; set; }

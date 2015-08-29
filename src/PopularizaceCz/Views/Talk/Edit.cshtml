@@ -1,0 +1,33 @@
+﻿@model PopularizaceCz.ViewModels.TalkEditViewModel
+@using PopularizaceCz.Helpers
+@{
+    ViewBag.Title = ("Editace přednášky: " + Model.DbModel.Name);
+}
+
+@Html.BeginForm()
+
+<h2>Přednáška: @Html.TextBoxFor(m => m.DbModel.Name)</h2>
+
+<dl>
+    <dt>Termín</dt>
+    <dd>@Html.TextBoxFor(m => m.StartDate, new { type = "date" })</dd>
+
+    <dt>Místo konání</dt>
+    <dd>@Html.TextBoxFor(m => m.DbModel.Venue.Name)</dd>
+
+    <dt>Přednášející</dt>
+    <dd>@Html.ListBoxFor(
+    m => m.SelectedSpeakers,
+    new MultiSelectList(Model.AllSpeakers, "Id", "Name"),
+    new { @class = "chosen-select" })</dd>
+
+    <dt>Organizuje</dt>
+    <dd>@Html.ListBoxFor(
+    m => m.SelectedOrganizers,
+    new MultiSelectList(Model.AllOrganizations, "Id", "Name"),
+    new { @class = "chosen-select" })</dd>
+</dl>
+
+<input type="submit" value="Update" />
+
+</form>

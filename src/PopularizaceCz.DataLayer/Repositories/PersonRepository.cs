@@ -43,6 +43,13 @@ namespace PopularizaceCz.DataLayer.Repositories
             return await this.CreateDbModel(persons);
         }
 
+        public async Task<IEnumerable<PersonDbEntity>> GetAllPersons()
+        {
+            var allPersons = await this._db.QueryAsync<PersonDbEntity>(@"SELECT p.* FROM [Person] p");
+
+            return allPersons.OrderBy(p => p.Name.Split(' ').Last());
+        }
+
         private async Task<IEnumerable<PersonDbModel>> CreateDbModel(IEnumerable<PersonDbEntity> pes)
         {
             var personIds = pes.Select(pe => pe.Id);

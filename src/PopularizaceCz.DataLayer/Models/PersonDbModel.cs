@@ -15,8 +15,8 @@ namespace PopularizaceCz.DataLayer.Models
             this.Organizations = orgs.ToList();
         }
 
-        public IReadOnlyCollection<TalkDbEntity> Talks { get; set; }
+        public IList<TalkDbEntity> Talks { get; set; }
 
-        public IReadOnlyCollection<OrganizationDbEntity> Organizations { get; set; }
+        public IList<OrganizationDbEntity> Organizations { get; set; }
     }
 }

@@ -7,10 +7,10 @@ namespace PopularizaceCz.DataLayer.Models
     {
         public CategoryDbEntity Entity { get; set; }
 
-        public IReadOnlyCollection<CategoryDbEntity> DirectSupCategories { get; set; }
+        public IList<CategoryDbEntity> DirectSupCategories { get; set; }
 
-        public IReadOnlyCollection<CategoryDbEntity> DirectSubCategories { get; set; }
+        public IList<CategoryDbEntity> DirectSubCategories { get; set; }
 
-        public IReadOnlyCollection<TalkDbEntity> Talks { get; set; }
+        public IList<TalkDbEntity> Talks { get; set; }
     }
 }

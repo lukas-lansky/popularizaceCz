@@ -1,4 +1,5 @@
 ﻿using PopularizaceCz.DataLayer.Models;
+using System;
 
 namespace PopularizaceCz.ViewModels
 {
