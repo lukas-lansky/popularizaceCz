@@ -1,51 +1,55 @@
 {
-    /* Click to learn more about project.json  http://go.microsoft.com/fwlink/?LinkID=517074 */
-    "webroot": "wwwroot",
-    "version": "1.0.0-*",
-    "dependencies": {
-        "Microsoft.AspNet.Mvc": "6.0.0-beta3",
-        "Microsoft.AspNet.Diagnostics": "1.0.0-beta3",
-        "Microsoft.AspNet.Diagnostics.Entity": "7.0.0-beta3",
-        "Microsoft.AspNet.Server.IIS": "1.0.0-beta3",
-        "Microsoft.AspNet.Server.WebListener": "1.0.0-beta3",
-        "Microsoft.AspNet.StaticFiles": "1.0.0-beta3",
-        "Microsoft.Framework.ConfigurationModel.Json": "1.0.0-beta3",
-        "Microsoft.Framework.CodeGenerators.Mvc": "1.0.0-beta3",
-        "Microsoft.Framework.Logging": "1.0.0-beta3",
-        "Microsoft.Framework.Logging.Console": "1.0.0-beta3",
-        "Microsoft.VisualStudio.Web.BrowserLink.Loader": "14.0.0-beta3",
-        "EmitMapper": "1.0.0",
-        "Dapper": "1.39",
-        "MiniProfiler": "3.1.1.140",
-        "Kestrel": "1.0.0-beta3",
-        "Microsoft.AspNet.Hosting": "1.0.0-beta3",
-        "DDay.iCal": "1.0.2.575"
-    },
-    "commands": {
-        "web": "Microsoft.AspNet.Hosting --server Microsoft.AspNet.Server.WebListener --server.urls http://localhost:5000",
-        "kestrel": "Microsoft.AspNet.Hosting --server Kestrel --server.urls http://localhost:5004",
-        "gen": "Microsoft.Framework.CodeGeneration"
-    },
-    "frameworks": {
-        "aspnet50": { }
-    },
-    "exclude": [
-        "wwwroot",
-        "node_modules",
-        "bower_components"
-    ],
-    "bundleExclude": [
-        "node_modules",
-        "bower_components",
-        "**.kproj",
-        "**.user",
-        "**.vspscc"
-    ],
-    "scripts": {
-        "postrestore": [ "npm install" ],
-        "prepare": [ "grunt bower:install" ]
-    },
-    "compilationOptions": {
-        "languageVersion": "experimental"
-    }
+  "webroot": "wwwroot",
+  "version": "1.0.0-*",
+  "dependencies": {
+    "Microsoft.AspNet.Mvc": "6.0.0-beta6",
+    "Microsoft.AspNet.Mvc.TagHelpers": "6.0.0-beta6",
+    "Microsoft.AspNet.Authentication.Cookies": "1.0.0-beta6",
+    "Microsoft.AspNet.Authentication.Facebook": "1.0.0-beta6",
+    "Microsoft.AspNet.Authentication.Google": "1.0.0-beta6",
+    "Microsoft.AspNet.Authentication.MicrosoftAccount": "1.0.0-beta6",
+    "Microsoft.AspNet.Authentication.Twitter": "1.0.0-beta6",
+    "Microsoft.AspNet.Diagnostics": "1.0.0-beta6",
+    "Microsoft.AspNet.Diagnostics.Entity": "7.0.0-beta6",
+    "Microsoft.AspNet.Identity.EntityFramework": "3.0.0-beta6",
+    "Microsoft.AspNet.Server.IIS": "1.0.0-beta6",
+    "Microsoft.AspNet.Server.WebListener": "1.0.0-beta6",
+    "Microsoft.AspNet.StaticFiles": "1.0.0-beta6",
+    "Microsoft.AspNet.Tooling.Razor": "1.0.0-beta6",
+    "Microsoft.Framework.Configuration.Abstractions": "1.0.0-beta6",
+    "Microsoft.Framework.Configuration.Json": "1.0.0-beta6",
+    "Microsoft.Framework.Configuration.UserSecrets": "1.0.0-beta6",
+    "Microsoft.Framework.Logging": "1.0.0-beta6",
+    "Microsoft.Framework.Logging.Console": "1.0.0-beta6",
+    "EmitMapper": "1.0.0",
+    "Dapper": "1.39",
+    "MiniProfiler": "3.1.1.140",
+    "Kestrel": "1.0.0-beta6",
+    "Microsoft.AspNet.Hosting": "1.0.0-beta6",
+    "DDay.iCal": "1.0.2.575"
+  },
+  "commands": {
+    "web": "Microsoft.AspNet.Hosting --server Microsoft.AspNet.Server.WebListener --server.urls http://localhost:5000",
+    "kestrel": "Microsoft.AspNet.Hosting --server Kestrel --server.urls http://localhost:5004",
+    "gen": "Microsoft.Framework.CodeGeneration"
+  },
+  "frameworks": {
+    "dnx451": { }
+  },
+  "exclude": [
+    "wwwroot",
+    "node_modules",
+    "bower_components"
+  ],
+  "bundleExclude": [
+    "node_modules",
+    "bower_components",
+    "**.kproj",
+    "**.user",
+    "**.vspscc"
+  ],
+  "scripts": {
+    "postrestore": [ "npm install" ],
+    "prepare": [ "grunt bower:install" ]
+  }
 }

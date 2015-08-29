@@ -1,7 +1,6 @@
-﻿using Microsoft.AspNet.Hosting;
-using Microsoft.Framework.ConfigurationModel;
-using System;
+﻿using System;
 using PopularizaceCz.Helpers;
+using Microsoft.Framework.Configuration;
 
 namespace PopularizaceCz.Services.Configuration
 {

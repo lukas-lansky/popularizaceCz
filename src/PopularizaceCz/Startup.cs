@@ -1,13 +1,7 @@
-﻿using System;
-using Microsoft.AspNet.Builder;
-using Microsoft.AspNet.Diagnostics;
+﻿using Microsoft.AspNet.Builder;
 using Microsoft.AspNet.Hosting;
-using Microsoft.Framework.ConfigurationModel;
 using Microsoft.Framework.DependencyInjection;
 using Microsoft.Framework.Logging;
-using Microsoft.Framework.Logging.Console;
-using PopularizaceCz.Database.Infrastructure;
-using PopularizaceCz.Database;
 using PopularizaceCz.Services.Configuration;
 using System.Data;
 using System.Data.SqlClient;
@@ -15,16 +9,29 @@ using StackExchange.Profiling;
 using StackExchange.Profiling.Data;
 using PopularizaceCz.Repositories;
 using PopularizaceCz.Services.ICalExport;
+using Microsoft.Framework.Configuration;
+using Microsoft.Framework.Runtime;
 
 namespace PopularizaceCz
 {
     public class Startup
     {
-        public Startup(IHostingEnvironment env)
+        public Startup(IHostingEnvironment env, IApplicationEnvironment appEnv)
         {
-            Configuration = new Configuration()
+            var builder = new ConfigurationBuilder(appEnv.ApplicationBasePath)
                 .AddJsonFile("config.json")
-                .AddEnvironmentVariables();
+                .AddJsonFile($"config.{env.EnvironmentName}.json", optional: true);
+
+            //if (env.IsDevelopment())
+            //{
+            //    // This reads the configuration keys from the secret store.
+            //    // For more details on using the user secret store see http://go.microsoft.com/fwlink/?LinkID=532709
+            //    builder.AddUserSecrets();
+            //}
+
+            builder.AddEnvironmentVariables();
+
+            Configuration = builder.Build();
         }
 
         public IConfiguration Configuration { get; set; }
@@ -62,7 +69,7 @@ namespace PopularizaceCz
 
             if (appConfig.Development)
             {
-                app.UseErrorPage(ErrorPageOptions.ShowAll);
+                app.UseErrorPage();
             }
             else
             {
