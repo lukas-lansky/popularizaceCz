@@ -5,10 +5,8 @@ using System.Threading.Tasks;
 
 namespace PopularizaceCz.DataLayer.Repositories
 {
-    public interface IOrganizationRepository
+    public interface IUserRepository
     {
-        Task<OrganizationDbModel> GetById(int id);
-
-        Task<IEnumerable<OrganizationDbEntity>> GetAllOrganizations();
+        Task<UserDbEntity> GetCurrentUser();
     }
 }

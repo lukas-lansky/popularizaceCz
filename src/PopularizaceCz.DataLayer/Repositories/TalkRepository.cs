@@ -38,7 +38,24 @@ namespace PopularizaceCz.DataLayer.Repositories
                 INNER JOIN [TalkSpeaker] ts ON ts.[PersonId] = p.[Id]
                 WHERE ts.[TalkId] = @TalkId", new { TalkId = id });
 
-            return new TalkDbModel(talk, venue, speakers);
+            var organizers = await this._db.QueryAsync<OrganizationDbEntity>(@"
+                SELECT [o].*
+                FROM [Organization] [o]
+                INNER JOIN [TalkOrganizer] [to] ON [to].[OrganizationId] = [o].[Id]
+                WHERE [to].[TalkId] = @TalkId", new { TalkId = id });
+
+            var categories = await this._db.QueryAsync<CategoryDbEntity>(@"
+                SELECT c.*
+                FROM [Category] c
+                INNER JOIN [TalkCategory] tc ON tc.[CategoryId] = c.[Id]
+                WHERE tc.[TalkId] = @TalkId", new { TalkId = id });
+
+            var recordings = await this._db.QueryAsync<TalkRecordingDbEntity>(@"
+                SELECT r.*
+                FROM [TalkRecording] r
+                WHERE r.[TalkId]=@TalkId", new { TalkId = id });
+
+            return new TalkDbModel(talk, venue, speakers, organizers, categories, recordings);
         }
 
         public async Task<IEnumerable<TalkDbEntity>> GetUpcomingTalks(int take = 10)
@@ -59,6 +76,8 @@ namespace PopularizaceCz.DataLayer.Repositories
                     Start = model.Start,
                     TalkId = model.Id });
 
+            // speakers
+
             await this._db.ExecuteAsync("DELETE FROM [TalkSpeaker] WHERE [TalkId]=@TalkId", new { TalkId = model.Id });
 
             foreach (var speaker in model.Speakers)
@@ -66,6 +85,28 @@ namespace PopularizaceCz.DataLayer.Repositories
                 await this._db.ExecuteAsync(
                     "INSERT INTO [TalkSpeaker] ([TalkId], [PersonId]) VALUES (@TalkId, @PersonId)",
                     new { TalkId = model.Id, PersonId = speaker.Id });
+            }
+
+            // organizers
+
+            await this._db.ExecuteAsync("DELETE FROM [TalkOrganizers] WHERE [TalkId]=@TalkId", new { TalkId = model.Id });
+
+            foreach (var organizer in model.Organizers)
+            {
+                await this._db.ExecuteAsync(
+                    "INSERT INTO [TalkOrganizers] ([TalkId], [OrganizationId]) VALUES (@TalkId, @OrganizationId)",
+                    new { TalkId = model.Id, OrganizationId = organizer.Id });
+            }
+
+            // recordings
+
+            await this._db.ExecuteAsync("DELETE FROM [TalkRecording] WHERE [TalkId]=@TalkId", new { TalkId = model.Id });
+
+            foreach (var recording in model.Recordings.Where(r => !string.IsNullOrEmpty(r.Url) || !string.IsNullOrEmpty(r.YouTubeVideoId)))
+            {
+                await this._db.ExecuteAsync(
+                    "INSERT INTO [TalkRecording] ([TalkId], [Url], [YouTubeVideoId]) VALUES (@TalkId, @Url, @YouTubeVideoId)",
+                    new { TalkId = model.Id, Url = recording.Url, YouTubeVideoId = recording.YouTubeVideoId });
             }
         }
     }

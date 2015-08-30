@@ -11,6 +11,7 @@ using PopularizaceCz.Services.ICalExport;
 using Microsoft.Framework.Configuration;
 using Microsoft.Framework.Runtime;
 using PopularizaceCz.DataLayer.Repositories;
+using PopularizaceCz.Services.YouTube;
 
 namespace PopularizaceCz
 {
@@ -56,13 +57,15 @@ namespace PopularizaceCz
                 return new ProfiledDbConnection(sqlConn, MiniProfiler.Current);
             });
 
+            // services
 			services.AddScoped<IICalExporter, DDayICalExporter>();
+            services.AddScoped<IYouTubeLinker, StaticYouTubeLinker>();
 
+            // repositories
             services.AddScoped<IPersonRepository, PersonRepository>();
-
             services.AddScoped<ITalkRepository, TalkRepository>();
-
             services.AddScoped<IOrganizationRepository, OrganizationRepository>();
+            services.AddScoped<IUserRepository, UserRepository>();
         }
         
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerfactory, IAppConfiguration appConfig)

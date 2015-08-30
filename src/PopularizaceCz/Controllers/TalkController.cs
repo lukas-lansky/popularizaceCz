@@ -4,6 +4,7 @@ using PopularizaceCz.ViewModels;
 using System.Threading.Tasks;
 using PopularizaceCz.Services.ICalExport;
 using PopularizaceCz.DataLayer.Repositories;
+using PopularizaceCz.Services.YouTube;
 
 namespace PopularizaceCz.Controllers
 {
@@ -15,19 +16,37 @@ namespace PopularizaceCz.Controllers
 
         private IOrganizationRepository _organizations;
 
+        private IUserRepository _users;
+
+        private IYouTubeLinker _ytLinker;
+
 		private IICalExporter _iCalExporter;
 
-        public TalkController(ITalkRepository talks, IPersonRepository persons, IOrganizationRepository organizations, IICalExporter iCalExporter)
+        public TalkController(
+            ITalkRepository talks, IPersonRepository persons, IOrganizationRepository organizations, IUserRepository users,
+            IYouTubeLinker ytLinker, IICalExporter iCalExporter)
         {
             this._talks = talks;
             this._persons = persons;
             this._organizations = organizations;
+            this._users = users;
+
+            this._ytLinker = ytLinker;
 			this._iCalExporter = iCalExporter;
         }
 
         public async Task<IActionResult> Show(int id)
         {
-            return View(new TalkViewModel { DbModel = await this._talks.GetById(id) });
+            var dbModel = await this._talks.GetById(id);
+
+            var ytRecording = dbModel?.Recordings?.FirstOrDefault(r => r.YouTubeVideoId != null);
+
+            return View(new TalkViewModel {
+                DbModel = dbModel,
+                CurrentUser = await this._users.GetCurrentUser(),
+                YouTubeVideoUrl = ytRecording == null ? null : _ytLinker.GetImageLink(ytRecording.YouTubeVideoId),
+                YouTubeImageUrl = ytRecording == null ? null : _ytLinker.GetVideoLink(ytRecording.YouTubeVideoId)
+            });
         }
 
         public async Task<IActionResult> Edit(int id, TalkEditViewModel model)
@@ -37,6 +56,8 @@ namespace PopularizaceCz.Controllers
                 model.DbModel.Id = id;
 
                 await this._talks.Update(model.DbModel);
+
+                return RedirectToAction("Show", new { id });
             }
 
             return View(new TalkEditViewModel {

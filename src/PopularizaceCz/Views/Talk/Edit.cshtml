@@ -1,5 +1,6 @@
 ﻿@model PopularizaceCz.ViewModels.TalkEditViewModel
 @using PopularizaceCz.Helpers
+@using PopularizaceCz.DataLayer.Entities
 @{
     ViewBag.Title = ("Editace přednášky: " + Model.DbModel.Name);
 }
@@ -17,15 +18,36 @@
 
     <dt>Přednášející</dt>
     <dd>@Html.ListBoxFor(
-    m => m.SelectedSpeakers,
-    new MultiSelectList(Model.AllSpeakers, "Id", "Name"),
-    new { @class = "chosen-select" })</dd>
+            m => m.SelectedSpeakers,
+            new MultiSelectList(Model.AllSpeakers, "Id", "Name"),
+            new { @class = "chosen-select" })</dd>
 
     <dt>Organizuje</dt>
     <dd>@Html.ListBoxFor(
-    m => m.SelectedOrganizers,
-    new MultiSelectList(Model.AllOrganizations, "Id", "Name"),
-    new { @class = "chosen-select" })</dd>
+            m => m.SelectedOrganizers,
+            new MultiSelectList(Model.AllOrganizations, "Id", "Name"),
+            new { @class = "chosen-select" })</dd>
+
+    <dt>Záznamy</dt>
+    <dd>
+        <table>
+            <tr>
+                <th>YouTube ID</th>
+                <th>URL</th>
+            </tr>
+            @for (var i = 0; i < (Model.DbModel?.Recordings?.Count ?? 0); i++)
+            {
+                <tr>
+                    <td>@Html.TextBoxFor(m => m.DbModel.Recordings[i].YouTubeVideoId)</td>
+                    <td>@Html.TextBoxFor(m => m.DbModel.Recordings[i].Url)</td>
+                </tr>
+            }
+            <tr>
+                <td><input type="text" name="newYTId" /></td>
+                <td><input type="text" name="newUrl" /></td>
+            </tr>
+        </table>
+    </dd>
 </dl>
 
 <input type="submit" value="Update" />

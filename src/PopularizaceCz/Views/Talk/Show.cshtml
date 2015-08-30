@@ -10,18 +10,68 @@
 
 <p>Místo konání: @Model.DbModel.Venue.Name</p>
 
-@if (Model.DbModel.Speakers.Count == 1)
+@if (Model.DbModel.Speakers.Any())
 {
-    var speaker = Model.DbModel.Speakers.First();
-
-    <p>Přednášející: @Html.ActionLink(speaker.Name, "Show", "Person", new { id = speaker.Id })</p>
+    <div class="row">
+        <div class="col-md-2">
+            Přednáší
+        </div>
+        <div class="col-md-10">
+            @foreach (var speaker in Model.DbModel.Speakers)
+            {
+                <div>@Html.ActionLink(speaker.Name, "Show", "Person", new { id = speaker.Id })</div>
+            }
+        </div>
+    </div>
 }
-else if (Model.DbModel.Speakers.Count > 1)
+
+@if (Model.DbModel.Organizers.Any())
 {
-    <ul>
-        @foreach (var speaker in Model.DbModel.Speakers)
-        {
-            <li>Přednášející: @Html.ActionLink(speaker.Name, "Show", "Person", new { id = speaker.Id })</li>
-        }
-    </ul>
+    <div class="row">
+        <div class="col-md-2">
+            Organizuje
+        </div>
+        <div class="col-md-10">
+            @foreach (var org in Model.DbModel.Organizers)
+            {
+                <div>@Html.ActionLink(org.Name, "Show", "Organization", new { id = org.Id })</div>
+            }
+        </div>
+    </div>
+}
+
+@if (Model.DbModel.DirectCategories.Any())
+{
+    <div class="row">
+        <div class="col-md-2">
+            Kategorie
+        </div>
+        <div class="col-md-10">
+            @foreach (var cat in Model.DbModel.DirectCategories)
+            {
+                <div>@Html.ActionLink(cat.Name, "Show", "Category", new { id = cat.Id })</div>
+            }
+        </div>
+    </div>
+}
+
+@if (Model.DbModel.Recordings.Any())
+{
+    <div class="row">
+        <div class="col-md-2">
+            Nahrávky
+        </div>
+        <div class="col-md-10">
+            @foreach (var rec in Model.DbModel.Recordings)
+            {
+                <div>@(rec.YouTubeVideoId ?? rec.Url)</div>
+            }
+        </div>
+    </div>
+}
+
+
+@if (Model.CurrentUser.IsAdmin)
+{
+    <div style="text-align: right">@Html.ActionLink("Upravit", "Edit", new { id = Model.DbModel.Id })</div>
 }

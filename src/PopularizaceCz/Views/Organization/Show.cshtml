@@ -1,0 +1,15 @@
+﻿@model PopularizaceCz.ViewModels.OrganizationViewModel
+@{
+    ViewBag.Title = ("Profil organizace: " + Model.DbModel.Name);
+}
+
+<h2>Profil organizace: @Model.DbModel.Name</h2>
+
+<h3>Evidované přednášky</h3>
+
+<ul>
+    @foreach (var talk in Model.DbModel.Talks)
+    {
+        <li>@talk.Start.ToString("d. M. yyyy"): @Html.ActionLink(talk.Name, "Show", "Talk", new { id = talk.Id })</li>
+    }
+</ul>

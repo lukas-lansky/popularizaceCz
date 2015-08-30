@@ -12,13 +12,21 @@ namespace PopularizaceCz.DataLayer.Models
 
         }
 
-        public TalkDbModel(TalkDbEntity e, VenueDbEntity venue, IEnumerable<PersonDbEntity> speakers)
+        public TalkDbModel(TalkDbEntity e, VenueDbEntity venue,
+            IEnumerable<PersonDbEntity> speakers, IEnumerable<OrganizationDbEntity> organizers,
+            IEnumerable<CategoryDbEntity> categories, IEnumerable<TalkRecordingDbEntity> recordings)
         {
             e.MapTo(this);
 
             this.Venue = venue;
 
             this.Speakers = speakers.ToList();
+
+            this.Organizers = organizers.ToList();
+
+            this.DirectCategories = categories.ToList();
+
+            this.Recordings = recordings.ToList();
         }
 
         public IList<PersonDbEntity> Speakers { get; set; }
