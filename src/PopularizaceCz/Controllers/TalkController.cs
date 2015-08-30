@@ -18,18 +18,21 @@ namespace PopularizaceCz.Controllers
 
         private IUserRepository _users;
 
+        private ICategoryRepository _cats;
+
         private IYouTubeLinker _ytLinker;
 
 		private IICalExporter _iCalExporter;
 
         public TalkController(
-            ITalkRepository talks, IPersonRepository persons, IOrganizationRepository organizations, IUserRepository users,
+            ITalkRepository talks, IPersonRepository persons, IOrganizationRepository organizations, IUserRepository users, ICategoryRepository cats,
             IYouTubeLinker ytLinker, IICalExporter iCalExporter)
         {
             this._talks = talks;
             this._persons = persons;
             this._organizations = organizations;
             this._users = users;
+            this._cats = cats;
 
             this._ytLinker = ytLinker;
 			this._iCalExporter = iCalExporter;
@@ -63,7 +66,8 @@ namespace PopularizaceCz.Controllers
             return View(new TalkEditViewModel {
                 DbModel = await this._talks.GetById(id),
                 AllSpeakers = await this._persons.GetAllPersons(),
-                AllOrganizations = await this._organizations.GetAllOrganizations() });
+                AllOrganizations = await this._organizations.GetAllOrganizations(),
+                AllCategories = await this._cats.GetAllCategories() });
         }
 		
 		public async Task<IActionResult> ExportUpcoming(string format = "ical")

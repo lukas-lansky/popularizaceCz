@@ -14,6 +14,8 @@ namespace PopularizaceCz.ViewModels
 
         public IEnumerable<OrganizationDbEntity> AllOrganizations { get; set; }
 
+        public IEnumerable<CategoryDbEntity> AllCategories { get; set; }
+
         public string StartDate
         {
             get
@@ -59,6 +61,22 @@ namespace PopularizaceCz.ViewModels
                 if (value != null)
                 {
                     DbModel.Organizers = value.Select(id => new OrganizationDbEntity { Id = id }).ToList();
+                }
+            }
+        }
+
+        public IList<int> SelectedCategories
+        {
+            get
+            {
+                return DbModel?.DirectCategories?.Select(c => c.Id)?.ToList() ?? new List<int>();
+            }
+
+            set
+            {
+                if (value != null)
+                {
+                    DbModel.DirectCategories = value.Select(id => new CategoryDbEntity { Id = id }).ToList();
                 }
             }
         }

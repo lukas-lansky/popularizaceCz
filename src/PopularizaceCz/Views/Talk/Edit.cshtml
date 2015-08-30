@@ -28,6 +28,14 @@
             new MultiSelectList(Model.AllOrganizations, "Id", "Name"),
             new { @class = "chosen-select" })</dd>
 
+    <dt>Kategorie</dt>
+    <dd>
+        @Html.ListBoxFor(
+            m => m.SelectedCategories,
+            new MultiSelectList(Model.AllCategories, "Id", "Name"),
+            new { @class = "chosen-select" })
+    </dd>
+
     <dt>Záznamy</dt>
     <dd>
         <table>

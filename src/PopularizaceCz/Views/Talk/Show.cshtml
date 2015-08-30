@@ -4,74 +4,97 @@
     ViewBag.Title = ("Přednáška: " + Model.DbModel.Name);
 }
 
-<h2>Přednáška: @Model.DbModel.Name</h2>
-
-<p>Termín: @Model.DbModel.Start.ToString("d. M. yyyy")</p>
-
-<p>Místo konání: @Model.DbModel.Venue.Name</p>
-
-@if (Model.DbModel.Speakers.Any())
-{
-    <div class="row">
-        <div class="col-md-2">
-            Přednáší
-        </div>
-        <div class="col-md-10">
-            @foreach (var speaker in Model.DbModel.Speakers)
-            {
-                <div>@Html.ActionLink(speaker.Name, "Show", "Person", new { id = speaker.Id })</div>
-            }
-        </div>
+<div class="row" style="margin-top: 14px;">
+    <div class="col-md-4" style="padding-top: 14px;">
+        @if (Model.DbModel.Venue.Latitude != null && Model.DbModel.Venue.Longitude != null)
+        {
+            <img src="//maps.googleapis.com/maps/api/staticmap?center=@Model.DbModel.Venue.Longitude,@Model.DbModel.Venue.Latitude&zoom=16&size=400x247"
+                 style="float:right; max-width: 100%" />
+        }
     </div>
-}
+    <div class="col-md-8">
+        <h2>Přednáška: @Model.DbModel.Name</h2>
 
-@if (Model.DbModel.Organizers.Any())
-{
-    <div class="row">
-        <div class="col-md-2">
-            Organizuje
-        </div>
-        <div class="col-md-10">
-            @foreach (var org in Model.DbModel.Organizers)
-            {
-                <div>@Html.ActionLink(org.Name, "Show", "Organization", new { id = org.Id })</div>
-            }
-        </div>
+        <p>Termín: @Model.DbModel.Start.ToString("d. M. yyyy")</p>
+
+        @if (Model.DbModel.Venue != null)
+        {
+            <div class="row">
+                <div class="col-md-2">
+                    Místo konání:
+                </div>
+                <div class="col-md-4">
+                    @Html.ActionLink(@Model.DbModel.Venue.Name, "Show", "Venue", new { id = @Model.DbModel.Venue.Id })
+                </div>
+            </div>
+
+            
+        }
+
+        @if (Model.DbModel.Speakers.Any())
+        {
+            <div class="row">
+                <div class="col-md-2">
+                    Přednáší
+                </div>
+                <div class="col-md-4">
+                    @foreach (var speaker in Model.DbModel.Speakers)
+                {
+                        <div>@Html.ActionLink(speaker.Name, "Show", "Person", new { id = speaker.Id })</div>
+                    }
+                </div>
+            </div>
+        }
+
+        @if (Model.DbModel.Organizers.Any())
+        {
+            <div class="row">
+                <div class="col-md-2">
+                    Organizuje
+                </div>
+                <div class="col-md-4">
+                    @foreach (var org in Model.DbModel.Organizers)
+                {
+                        <div>@Html.ActionLink(org.Name, "Show", "Organization", new { id = org.Id })</div>
+                    }
+                </div>
+            </div>
+        }
+
+        @if (Model.DbModel.DirectCategories.Any())
+        {
+            <div class="row">
+                <div class="col-md-2">
+                    Kategorie
+                </div>
+                <div class="col-md-4">
+                    @foreach (var cat in Model.DbModel.DirectCategories)
+                {
+                        <div>@Html.ActionLink(cat.Name, "Show", "Category", new { id = cat.Id })</div>
+                    }
+                </div>
+            </div>
+        }
+
+        @if (Model.DbModel.Recordings.Any())
+        {
+            <div class="row">
+                <div class="col-md-2">
+                    Nahrávky
+                </div>
+                <div class="col-md-4">
+                    @foreach (var rec in Model.DbModel.Recordings)
+                {
+                        <div>@(rec.YouTubeVideoId ?? rec.Url)</div>
+                    }
+                </div>
+            </div>
+        }
+
+
+        @if (Model.CurrentUser.IsAdmin)
+        {
+            <div style="text-align: right">@Html.ActionLink("Upravit", "Edit", new { id = Model.DbModel.Id })</div>
+        }
     </div>
-}
-
-@if (Model.DbModel.DirectCategories.Any())
-{
-    <div class="row">
-        <div class="col-md-2">
-            Kategorie
-        </div>
-        <div class="col-md-10">
-            @foreach (var cat in Model.DbModel.DirectCategories)
-            {
-                <div>@Html.ActionLink(cat.Name, "Show", "Category", new { id = cat.Id })</div>
-            }
-        </div>
-    </div>
-}
-
-@if (Model.DbModel.Recordings.Any())
-{
-    <div class="row">
-        <div class="col-md-2">
-            Nahrávky
-        </div>
-        <div class="col-md-10">
-            @foreach (var rec in Model.DbModel.Recordings)
-            {
-                <div>@(rec.YouTubeVideoId ?? rec.Url)</div>
-            }
-        </div>
-    </div>
-}
-
-
-@if (Model.CurrentUser.IsAdmin)
-{
-    <div style="text-align: right">@Html.ActionLink("Upravit", "Edit", new { id = Model.DbModel.Id })</div>
-}
+</div>

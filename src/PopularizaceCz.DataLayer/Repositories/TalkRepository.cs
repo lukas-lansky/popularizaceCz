@@ -80,7 +80,7 @@ namespace PopularizaceCz.DataLayer.Repositories
 
             await this._db.ExecuteAsync("DELETE FROM [TalkSpeaker] WHERE [TalkId]=@TalkId", new { TalkId = model.Id });
 
-            foreach (var speaker in model.Speakers)
+            foreach (var speaker in model.Speakers ?? new List<PersonDbEntity>())
             {
                 await this._db.ExecuteAsync(
                     "INSERT INTO [TalkSpeaker] ([TalkId], [PersonId]) VALUES (@TalkId, @PersonId)",
@@ -89,20 +89,31 @@ namespace PopularizaceCz.DataLayer.Repositories
 
             // organizers
 
-            await this._db.ExecuteAsync("DELETE FROM [TalkOrganizers] WHERE [TalkId]=@TalkId", new { TalkId = model.Id });
+            await this._db.ExecuteAsync("DELETE FROM [TalkOrganizer] WHERE [TalkId]=@TalkId", new { TalkId = model.Id });
 
-            foreach (var organizer in model.Organizers)
+            foreach (var organizer in model.Organizers ?? new List<OrganizationDbEntity>())
             {
                 await this._db.ExecuteAsync(
-                    "INSERT INTO [TalkOrganizers] ([TalkId], [OrganizationId]) VALUES (@TalkId, @OrganizationId)",
+                    "INSERT INTO [TalkOrganizer] ([TalkId], [OrganizationId]) VALUES (@TalkId, @OrganizationId)",
                     new { TalkId = model.Id, OrganizationId = organizer.Id });
+            }
+
+            // categories
+
+            await this._db.ExecuteAsync("DELETE FROM [TalkCategory] WHERE [TalkId]=@TalkId", new { TalkId = model.Id });
+
+            foreach (var category in model.DirectCategories ?? new List<CategoryDbEntity>())
+            {
+                await this._db.ExecuteAsync(
+                    "INSERT INTO [TalkCategory] ([TalkId], [CategoryId]) VALUES (@TalkId, @CategoryId)",
+                    new { TalkId = model.Id, CategoryId = category.Id });
             }
 
             // recordings
 
             await this._db.ExecuteAsync("DELETE FROM [TalkRecording] WHERE [TalkId]=@TalkId", new { TalkId = model.Id });
 
-            foreach (var recording in model.Recordings.Where(r => !string.IsNullOrEmpty(r.Url) || !string.IsNullOrEmpty(r.YouTubeVideoId)))
+            foreach (var recording in model.Recordings?.Where(r => !string.IsNullOrEmpty(r.Url) || !string.IsNullOrEmpty(r.YouTubeVideoId)) ?? new List<TalkRecordingDbEntity>())
             {
                 await this._db.ExecuteAsync(
                     "INSERT INTO [TalkRecording] ([TalkId], [Url], [YouTubeVideoId]) VALUES (@TalkId, @Url, @YouTubeVideoId)",
