@@ -5,6 +5,9 @@ using Dapper;
 using System.Threading.Tasks;
 using PopularizaceCz.DataLayer.Entities;
 using PopularizaceCz.DataLayer.Models;
+using PopularizaceCz.Helpers;
+using EmitMapper;
+using System;
 
 namespace PopularizaceCz.DataLayer.Repositories
 {
@@ -28,6 +31,20 @@ namespace PopularizaceCz.DataLayer.Repositories
                 new { OrganizationId = id });
 
             return new OrganizationDbModel(org, talks);
+        }
+
+        public async Task<IDictionary<OrganizationDbEntity, int>> GetOrganizationsWithMostTalks(int take = 10)
+        {
+            var orgs = await this._db.QueryAsync(@"
+                SELECT TOP {0} o.*, COUNT(t.[Id]) AS TalkCount FROM [Talk] t
+                INNER JOIN [TalkOrganizer] [to] ON t.[Id] = [to].[TalkId]
+                INNER JOIN [Organization] o ON [to].[OrganizationId] = o.[Id]
+                GROUP BY o.[Id], o.[Name]
+                ORDER BY COUNT(t.[Id]) DESC".FormatWith(take));
+            
+            return orgs.ToDictionary(
+                p => new OrganizationDbEntity { Id = p.Id, Name = p.Name }, // TODO.
+                p => (int)p.TalkCount);
         }
 
         public async Task<IEnumerable<OrganizationDbEntity>> GetAllOrganizations()

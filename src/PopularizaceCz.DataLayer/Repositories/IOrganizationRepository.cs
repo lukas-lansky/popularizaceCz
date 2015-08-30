@@ -9,6 +9,8 @@ namespace PopularizaceCz.DataLayer.Repositories
     {
         Task<OrganizationDbModel> GetById(int id);
 
+        Task<IDictionary<OrganizationDbEntity, int>> GetOrganizationsWithMostTalks(int take = 10);
+
         Task<IEnumerable<OrganizationDbEntity>> GetAllOrganizations();
     }
 }

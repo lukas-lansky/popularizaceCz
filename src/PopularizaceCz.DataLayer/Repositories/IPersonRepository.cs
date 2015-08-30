@@ -9,7 +9,7 @@ namespace PopularizaceCz.DataLayer.Repositories
     {
         Task<PersonDbModel> GetById(int id);
 
-        Task<IEnumerable<PersonDbModel>> GetPersonsWithMostTalks(int take = 10);
+        Task<IDictionary<PersonDbEntity, int>> GetPersonsWithMostTalks(int take = 10);
 
         Task<IEnumerable<PersonDbEntity>> GetAllPersons();
     }

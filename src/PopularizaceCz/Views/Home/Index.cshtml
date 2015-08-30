@@ -84,20 +84,24 @@
         <ul>
             @foreach (var speaker in this.Model.FrequentSpeakers)
             {
-                <li>@Html.ActionLink(speaker.Name, "Show", "Person", new { id = speaker.Id }) (@speaker.Talks.Count)</li>
+                <li>@Html.ActionLink(speaker.Key.Name, "Show", "Person", new { id = speaker.Key.Id }) (@speaker.Value)</li>
             }
         </ul>
 
         <h2>Záznamy podle témat</h2>
         <ul>
-            <li>Toxoplasmóza (4 přednášky)</li>
-            <li>...</li>
+            @foreach (var cat in this.Model.FrequentCategories)
+            {
+                <li>@Html.ActionLink(cat.Key.Name, "Show", "Person", new { id = cat.Key.Id }) (@cat.Value)</li>
+            }
         </ul>
-
+        
         <h2>Záznamy podle organizátorů</h2>
         <ul>
-            <li>Biologické čtvrtky (76 přednášek)</li>
-            <li>...</li>
+            @foreach (var organizer in this.Model.FrequentOrganizers)
+            {
+                <li>@Html.ActionLink(organizer.Key.Name, "Show", "Organization", new { id = organizer.Key.Id }) (@organizer.Value)</li>
+            }
         </ul>
     </div>
 

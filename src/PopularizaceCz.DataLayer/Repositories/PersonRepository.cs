@@ -6,6 +6,7 @@ using PopularizaceCz.DataLayer.Models;
 using PopularizaceCz.DataLayer.Entities;
 using System.Data;
 using Dapper;
+using EmitMapper;
 
 namespace PopularizaceCz.DataLayer.Repositories
 {
@@ -31,16 +32,18 @@ namespace PopularizaceCz.DataLayer.Repositories
             return new PersonDbModel(person, talks, new List<OrganizationDbEntity>());
         }
 
-        public async Task<IEnumerable<PersonDbModel>> GetPersonsWithMostTalks(int take = 10)
+        public async Task<IDictionary<PersonDbEntity, int>> GetPersonsWithMostTalks(int take = 10)
         {
-            var persons = await this._db.QueryAsync<PersonDbEntity>(@"
-                SELECT TOP {0} p.[Id], p.[Name], COUNT(t.[Id]) FROM [Talk] t
+            var persons = await this._db.QueryAsync(@"
+                SELECT TOP {0} p.*, COUNT(t.[Id]) AS TalkCount FROM [Talk] t
                 INNER JOIN [TalkSpeaker] ts ON t.[Id] = ts.[TalkId]
                 INNER JOIN [Person] p ON ts.[PersonId] = p.[Id]
                 GROUP BY p.[Id], p.[Name]
                 ORDER BY COUNT(t.[Id]) DESC".FormatWith(take));
 
-            return await this.CreateDbModel(persons);
+            return persons.ToDictionary(
+                p => new PersonDbEntity { Id = p.Id, Name = p.Name }, // TODO.
+                p => (int)p.TalkCount);
         }
 
         public async Task<IEnumerable<PersonDbEntity>> GetAllPersons()

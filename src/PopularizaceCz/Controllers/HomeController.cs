@@ -12,20 +12,28 @@ namespace PopularizaceCz.Controllers
 
         private ITalkRepository _talks { get; set; }
 
-        public HomeController(IPersonRepository persons, ITalkRepository talks)
+        private IOrganizationRepository _orgs { get; set; }
+
+        private ICategoryRepository _cats { get; set; }
+
+        public HomeController(IPersonRepository persons, ITalkRepository talks, IOrganizationRepository orgs, ICategoryRepository cats)
         {
             if (persons == null) throw new ArgumentNullException();
             if (talks == null) throw new ArgumentNullException();
 
             this._persons = persons;
             this._talks = talks;
+            this._orgs = orgs;
+            this._cats = cats;
         }
 
         public async Task<IActionResult> Index()
         {
             return View(new HomepageViewModel {
                 UpcomingTalks = await this._talks.GetUpcomingTalks(),
-                FrequentSpeakers = await this._persons.GetPersonsWithMostTalks() });
+                FrequentSpeakers = await this._persons.GetPersonsWithMostTalks(),
+                FrequentOrganizers = await this._orgs.GetOrganizationsWithMostTalks(),
+                FrequentCategories = await this._cats.GetCategoriesWithMostTalks() });
         }
         
         public IActionResult Error()
