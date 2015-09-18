@@ -17,6 +17,11 @@
 
         <p>Termín: @Model.DbModel.Start.ToString("d. M. yyyy")</p>
 
+        @if (!string.IsNullOrEmpty(Model.DbModel.Url))
+        {
+            <p>Stránka organizátora: <a href="@Model.DbModel.Url">@Model.DbModel.Url</a></p>
+        }
+
         @if (Model.DbModel.Venue != null)
         {
             <div class="row">

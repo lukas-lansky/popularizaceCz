@@ -5,7 +5,12 @@
 
 <h2>Profil organizace: @Model.DbModel.Name</h2>
 
-<h3>Evidované přednášky</h3>
+@if (!string.IsNullOrEmpty(Model.DbModel.Url))
+{
+    <p>Webové stránky: <a href="@Model.DbModel.Url">@Model.DbModel.Url</a></p>
+}
+
+<h3>Přednášky</h3>
 
 <ul>
     @foreach (var talk in Model.DbModel.Talks)
