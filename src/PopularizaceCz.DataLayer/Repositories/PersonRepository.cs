@@ -19,16 +19,23 @@ namespace PopularizaceCz.DataLayer.Repositories
             this._db = db;
         }
 
+        public class PersonMissingException : AppException { }
+
         public async Task<PersonDbModel> GetById(int id)
         {
             var person = (await this._db.QueryAsync<PersonDbEntity>(
                 @"SELECT * FROM [Person] WHERE [Id] = @PersonId",
-                new { PersonId = id })).Single();
+                new { PersonId = id })).SingleOrDefault();
+
+            if (person == null)
+            {
+                throw new PersonMissingException();
+            }
 
             var talks = await this._db.QueryAsync<TalkDbEntity>(
                 @"SELECT t.* FROM [Talk] t INNER JOIN [TalkSpeaker] ts ON ts.[TalkId] = t.[Id] WHERE ts.[PersonId] = @PersonId",
                 new { PersonId = id });
-
+            
             return new PersonDbModel(person, talks, new List<OrganizationDbEntity>());
         }
 

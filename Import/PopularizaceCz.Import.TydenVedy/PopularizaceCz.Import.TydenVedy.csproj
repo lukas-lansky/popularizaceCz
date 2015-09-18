@@ -4,16 +4,16 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{0CF45ACC-FDDA-451F-8435-717D40B2F589}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <ProjectGuid>{FCFF7D8A-D7C5-4F15-BC01-544F310D61F5}</ProjectGuid>
+    <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>PopularizaceCz.Import.Runner</RootNamespace>
-    <AssemblyName>PopularizaceCz.Import.Runner</AssemblyName>
+    <RootNamespace>PopularizaceCz.Import.TydenVedy</RootNamespace>
+    <AssemblyName>PopularizaceCz.Import.TydenVedy</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -23,7 +23,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -32,34 +31,31 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="HtmlAgilityPack, Version=1.4.9.0, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\HtmlAgilityPack.1.4.9\lib\Net45\HtmlAgilityPack.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Program.cs" />
+    <Compile Include="TydenVedyImport.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\PopularizaceCz.Import.Common\PopularizaceCz.Import.Common.csproj">
       <Project>{d7f4d463-9eb9-424e-aa49-fa0ac39f1e9c}</Project>
       <Name>PopularizaceCz.Import.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\PopularizaceCz.Import.BioCtvrtky\PopularizaceCz.Import.BioCtvrtky.csproj">
-      <Project>{9f7583e6-02b3-4fb0-9a22-d1516c3cb1c7}</Project>
-      <Name>PopularizaceCz.Import.BioCtvrtky</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\PopularizaceCz.Import.TydenVedy\PopularizaceCz.Import.TydenVedy.csproj">
-      <Project>{fcff7d8a-d7c5-4f15-bc01-544f310d61f5}</Project>
-      <Name>PopularizaceCz.Import.TydenVedy</Name>
-    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -8,13 +8,13 @@ namespace PopularizaceCz.Import.Runner
     {
         static void Main(string[] args)
         {
-            var bcTask = new BioCtvrtkyImport().Import();
-			// var wdTask = new WikiDataImporter().Import();
+            // var bcTask = new BioCtvrtkyImport().Import();
+            var tvTask = new TydenVedy.TydenVedyImport().Import();
 
-			Task.WaitAll(bcTask); //, wdTask);
+			Task.WaitAll(tvTask); //, wdTask);
 
-            File.WriteAllText("bc.sql", bcTask.Result);
-            // File.WriteAllText("wd.sql", wdTask.Result);
+            // File.WriteAllText("bc.sql", bcTask.Result);
+            File.WriteAllText("tv.sql", tvTask.Result);
         }
     }
 }

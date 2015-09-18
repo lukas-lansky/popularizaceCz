@@ -11,5 +11,7 @@ namespace PopularizaceCz.DataLayer.Entities
         public DateTime Start { get; set; }
 
         public int VenueId { get; set; }
+
+        public string Url { get; set; }
     }
 }

@@ -20,11 +20,18 @@ namespace PopularizaceCz.DataLayer.Repositories
             this._db = db;
         }
 
+        public class OrganizationMissingException : AppException { }
+
         public async Task<OrganizationDbModel> GetById(int id)
         {
             var org = (await this._db.QueryAsync<OrganizationDbEntity>(
                 @"SELECT * FROM [Organization] WHERE [Id] = @OrganizationId",
-                new { OrganizationId = id })).Single();
+                new { OrganizationId = id })).SingleOrDefault();
+
+            if (org == null)
+            {
+                throw new OrganizationMissingException();
+            }
 
             var talks = await this._db.QueryAsync<TalkDbEntity>(
                 @"SELECT t.* FROM [Talk] t INNER JOIN [TalkOrganizer] [to] ON [to].[TalkId] = t.[Id] WHERE [to].[OrganizationId] = @OrganizationId",
@@ -39,7 +46,7 @@ namespace PopularizaceCz.DataLayer.Repositories
                 SELECT TOP {0} o.*, COUNT(t.[Id]) AS TalkCount FROM [Talk] t
                 INNER JOIN [TalkOrganizer] [to] ON t.[Id] = [to].[TalkId]
                 INNER JOIN [Organization] o ON [to].[OrganizationId] = o.[Id]
-                GROUP BY o.[Id], o.[Name]
+                GROUP BY o.[Id], o.[Name], o.[Url]
                 ORDER BY COUNT(t.[Id]) DESC".FormatWith(take));
             
             return orgs.ToDictionary(
