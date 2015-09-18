@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using PopularizaceCz.DataLayer.Entities;
 using System.Linq;
 using PopularizaceCz.Helpers;
-using EmitMapper;
+using PopularizaceCz.DataLayer.Models;
 
 namespace PopularizaceCz.DataLayer.Repositories
 {
@@ -17,12 +17,37 @@ namespace PopularizaceCz.DataLayer.Repositories
         {
             this._db = db;
         }
-        
+
+        public class CategoryMissingException : AppException { }
+
+        public async Task<CategoryDbModel> GetById(int id)
+        {
+            var categoryEntity = (await this._db
+                .QueryAsync<CategoryDbEntity>(
+                    "SELECT [c].* FROM [Category] [c] WHERE [c].[Id]=@CategoryId",
+                    new { CategoryId = id }))
+                .SingleOrDefault();
+
+            if (categoryEntity == null)
+            {
+                throw new CategoryMissingException();
+            }
+
+            var talks = await this._db.QueryAsync<TalkDbEntity>(
+                @"SELECT [t].*
+                FROM [Talk] [t]
+                INNER JOIN [TalkCategory] [tc] ON [tc].[TalkId]=[t].[Id]
+                WHERE [tc].[CategoryId]=@CategoryId",
+                new { CategoryId = id });
+
+            return new CategoryDbModel(categoryEntity, null, null, talks.ToList());
+        }
+
         public async Task<IEnumerable<CategoryDbEntity>> GetAllCategories()
         {
             return await this._db.QueryAsync<CategoryDbEntity>(@"SELECT c.* FROM [Category] c ORDER BY c.[Name]");
         }
-
+        
         public async Task<IDictionary<CategoryDbEntity, int>> GetCategoriesWithMostTalks(int take = 10)
         {
             var cats = await this._db.QueryAsync(@"

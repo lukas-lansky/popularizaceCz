@@ -1,11 +1,21 @@
 ﻿using PopularizaceCz.DataLayer.Entities;
 using System.Collections.Generic;
+using PopularizaceCz.Helpers;
 
 namespace PopularizaceCz.DataLayer.Models
 {
-    public class CategoryDbModel
+    public class CategoryDbModel : CategoryDbEntity
     {
-        public CategoryDbEntity Entity { get; set; }
+        public CategoryDbModel(CategoryDbEntity entity, IList<CategoryDbEntity> supCats, IList<CategoryDbEntity> subCats, IList<TalkDbEntity> talks)
+        {
+            entity.MapTo(this);
+
+            this.DirectSupCategories = supCats;
+
+            this.DirectSubCategories = subCats;
+
+            this.Talks = talks;
+        }
 
         public IList<CategoryDbEntity> DirectSupCategories { get; set; }
 
