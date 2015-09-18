@@ -9,7 +9,14 @@
         @if (Model.DbModel.Venue.Latitude != null && Model.DbModel.Venue.Longitude != null)
         {
             <img src="//maps.googleapis.com/maps/api/staticmap?center=@Model.DbModel.Venue.Longitude,@Model.DbModel.Venue.Latitude&zoom=16&size=400x247"
-                 style="float:right; max-width: 100%" />
+                 style="max-width: 100%" />
+        }
+
+        @foreach (var ytLink in Model.DbModel.Recordings.Where(r => !string.IsNullOrEmpty(r.YouTubeVideoId)))
+        {
+            <h4 style="text-align: center">@ytLink.Description</h4>
+
+            <a href="https://www.youtube.com/watch?v=@(ytLink.YouTubeVideoId)"><img src="http://img.youtube.com/vi/@(ytLink.YouTubeVideoId)/hqdefault.jpg" style="max-width: 100%" /></a>
         }
     </div>
     <div class="col-md-8">
@@ -80,23 +87,7 @@
                 </div>
             </div>
         }
-
-        @if (Model.DbModel.Recordings.Any())
-        {
-            <div class="row">
-                <div class="col-md-2">
-                    Nahrávky
-                </div>
-                <div class="col-md-4">
-                    @foreach (var rec in Model.DbModel.Recordings)
-                {
-                        <div>@(rec.YouTubeVideoId ?? rec.Url)</div>
-                    }
-                </div>
-            </div>
-        }
-
-
+        
         @if (Model.CurrentUser.IsAdmin)
         {
             <div style="text-align: right">@Html.ActionLink("Upravit", "Edit", new { id = Model.DbModel.Id })</div>
