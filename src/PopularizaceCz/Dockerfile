@@ -1,4 +1,4 @@
-FROM microsoft/aspnet
+FROM microsoft/aspnet:1.0.0-beta6
 
 RUN apt-get -qq update
 RUN apt-get -qqy install git python
@@ -20,7 +20,7 @@ RUN rm -rf tmp
 
 COPY . /app
 WORKDIR /app
-RUN ["kpm", "restore"]
+RUN ["dnu", "restore"]
 
 EXPOSE 5004
-ENTRYPOINT ["k", "kestrel"]
+ENTRYPOINT ["dnx", "-p", "project.json", "kestrel"]
