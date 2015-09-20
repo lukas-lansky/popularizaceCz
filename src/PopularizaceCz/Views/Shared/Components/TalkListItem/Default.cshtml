@@ -1,0 +1,6 @@
+﻿@model PopularizaceCz.DataLayer.Entities.TalkDbEntity
+
+<div class="talkListItem">
+    <div class="talkListItemDate">@Model.Start.ToString("d. MMMM yyyy", System.Globalization.CultureInfo.GetCultureInfo("CS-cz").DateTimeFormat)</div>
+    <div class="talkListItemName">@Html.ActionLink(Model.Name, "Show", "Talk", new { id = Model.Id })</div>
+</div>

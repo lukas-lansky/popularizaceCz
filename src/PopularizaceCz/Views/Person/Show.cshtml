@@ -7,9 +7,7 @@
 
 <h3>Evidované přednášky</h3>
 
-<ul>
-    @foreach (var talk in Model.DbModel.Talks)
-    {
-        <li>@talk.Start.ToString("d. M. yyyy"): @Html.ActionLink(talk.Name, "Show", "Talk", new { id = talk.Id })</li>
-    }
-</ul>
+@foreach (var talk in Model.DbModel.Talks)
+{
+    @Component.Invoke("TalkListItem", talk)
+}

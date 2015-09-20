@@ -4,6 +4,30 @@
 }
 
 
+.talkListItem
+{
+    padding: 12px;
+    margin: 12px;
+    border: solid 2px rgb(64, 64, 64);
+    border-radius: 6px;
+}
+
+.talkListItem:hover
+{
+    background-color: rgb(240, 240, 240);
+}
+
+.talkListItemDate
+{
+    font-size: small;
+}
+
+.talkListItemName
+{
+    font-size: large;
+}
+
+
 /* Wrapping element */
 /* Set some basic padding to keep content from hitting the edges */
 .body-content {
