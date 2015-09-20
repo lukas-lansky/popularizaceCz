@@ -6,7 +6,7 @@
 
 <div class="row" style="margin-top: 14px;">
     <div class="col-md-4" style="padding-top: 14px;">
-        @if (Model.DbModel.Venue.Latitude != null && Model.DbModel.Venue.Longitude != null)
+        @if ((Model.DbModel.Venue.Latitude ?? 0) != 0 && (Model.DbModel.Venue.Longitude ?? 0) != 0)
         {
             <img src="//maps.googleapis.com/maps/api/staticmap?center=@Model.DbModel.Venue.Longitude,@Model.DbModel.Venue.Latitude&zoom=16&size=400x247"
                  style="max-width: 100%" />
@@ -22,7 +22,7 @@
     <div class="col-md-8">
         <h2>Přednáška: @Model.DbModel.Name</h2>
 
-        <p>Termín: @Model.DbModel.Start.ToString("d. M. yyyy")</p>
+        <p>Termín: @Model.DbModel.Start.ToString("d. MMMM yyyy", System.Globalization.CultureInfo.GetCultureInfo("CS-cz").DateTimeFormat)</p>
 
         @if (!string.IsNullOrEmpty(Model.DbModel.Url))
         {
