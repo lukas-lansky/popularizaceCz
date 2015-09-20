@@ -10,6 +10,12 @@
 <h2>Přednáška: @Html.TextBoxFor(m => m.DbModel.Name)</h2>
 
 <dl>
+    <dt>Podtitul</dt>
+    <dd>@Html.TextBoxFor(m => m.DbModel.Subtitle)</dd>
+
+    <dt>Url</dt>
+    <dd>@Html.TextBoxFor(m => m.DbModel.Url)</dd>
+
     <dt>Termín</dt>
     <dd>@Html.TextBoxFor(m => m.StartDate, new { type = "date" })</dd>
 

@@ -70,10 +70,12 @@ namespace PopularizaceCz.DataLayer.Repositories
         public async Task Update(TalkDbModel model)
         {
             await this._db.ExecuteAsync(
-                "UPDATE [Talk] SET [Name]=@Name, [Start]=@Start WHERE [Id]=@TalkId",
+                "UPDATE [Talk] SET [Name]=@Name, [Start]=@Start, [Url]=@Url, [Subtitle]=@Subtitle WHERE [Id]=@TalkId",
                 new {
                     Name = model.Name,
                     Start = model.Start,
+                    Url = model.Url,
+                    Subtitle = model.Subtitle,
                     TalkId = model.Id });
 
             // speakers

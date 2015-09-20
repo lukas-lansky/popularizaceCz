@@ -14,13 +14,26 @@
 
         @foreach (var ytLink in Model.DbModel.Recordings.Where(r => !string.IsNullOrEmpty(r.YouTubeVideoId)))
         {
-            <h4 style="text-align: center">@ytLink.Description</h4>
+            <h4 class="leftMenuHeading">@ytLink.Description</h4>
 
             <a href="https://www.youtube.com/watch?v=@(ytLink.YouTubeVideoId)"><img src="http://img.youtube.com/vi/@(ytLink.YouTubeVideoId)/hqdefault.jpg" style="max-width: 100%" /></a>
         }
     </div>
     <div class="col-md-8">
-        <h2>Přednáška: @Model.DbModel.Name</h2>
+        @if (Model.DbModel.Speakers.Any())
+        {
+            <h2>
+                @foreach (var speaker in Model.DbModel.Speakers)
+                {
+                    @(Html.ActionLink(speaker.Name, "Show", "Person", new { id = speaker.Id }))
+                }: @Model.DbModel.Name
+            </h2>
+        }
+
+        @if (Model.DbModel.Subtitle != null)
+        {
+            <h3>@Model.DbModel.Subtitle</h3>
+        }
 
         <p>Termín: @Model.DbModel.Start.ToString("d. MMMM yyyy", System.Globalization.CultureInfo.GetCultureInfo("CS-cz").DateTimeFormat)</p>
 
@@ -40,22 +53,7 @@
                 </div>
             </div>
         }
-
-        @if (Model.DbModel.Speakers.Any())
-        {
-            <div class="row">
-                <div class="col-md-2">
-                    Přednáší
-                </div>
-                <div class="col-md-4">
-                    @foreach (var speaker in Model.DbModel.Speakers)
-                {
-                        <div>@Html.ActionLink(speaker.Name, "Show", "Person", new { id = speaker.Id })</div>
-                    }
-                </div>
-            </div>
-        }
-
+        
         @if (Model.DbModel.Organizers.Any())
         {
             <div class="row">

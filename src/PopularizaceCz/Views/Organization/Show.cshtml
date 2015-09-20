@@ -3,7 +3,7 @@
     ViewBag.Title = ("Profil organizace: " + Model.DbModel.Name);
 }
 
-<h2>Profil organizace: @Model.DbModel.Name</h2>
+<h2>Profil organizace „@Model.DbModel.Name“</h2>
 
 @if (!string.IsNullOrEmpty(Model.DbModel.Url))
 {
@@ -12,7 +12,7 @@
 
 <h3>Přednášky</h3>
 
-@foreach (var talk in Model.DbModel.Talks)
+@foreach (var talk in Model.DbModel.Talks.OrderByDescending(t => t.Start))
 {
     @Component.Invoke("TalkListItem", talk)
 }

@@ -5,5 +5,6 @@
 	[Start] DATETIME NOT NULL,
 	[VenueId] INT NOT NULL,
 	[Url] NVARCHAR(500) NULL,
+	[Subtitle] NVARCHAR(1000) NULL,
 	CONSTRAINT [FK_Talk_Venue] FOREIGN KEY ([VenueId]) REFERENCES [Venue]([Id])
 )

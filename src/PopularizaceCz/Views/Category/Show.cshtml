@@ -5,7 +5,7 @@
 
 <h2>Kategorie „@Model.DbModel.Name“</h2>
 
-@foreach (var talk in Model.DbModel.Talks)
+@foreach (var talk in Model.DbModel.Talks.OrderByDescending(t => t.Start))
 {
     @Component.Invoke("TalkListItem", talk)
 }

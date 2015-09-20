@@ -3,6 +3,11 @@
     padding-bottom: 20px;
 }
 
+.leftMenuHeading
+{
+    text-align: center;
+}
+
 
 .talkListItem
 {
@@ -25,6 +30,11 @@
 .talkListItemName
 {
     font-size: large;
+}
+
+.talkListItemSubtitle
+{
+
 }
 
 

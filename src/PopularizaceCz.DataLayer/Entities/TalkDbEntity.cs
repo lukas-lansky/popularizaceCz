@@ -13,5 +13,7 @@ namespace PopularizaceCz.DataLayer.Entities
         public int VenueId { get; set; }
 
         public string Url { get; set; }
+
+        public string Subtitle { get; set; }
     }
 }
