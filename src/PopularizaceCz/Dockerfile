@@ -18,6 +18,8 @@ RUN npm install -g grunt-cli
 WORKDIR ../..
 RUN rm -rf tmp
 
+RUN mkdir /tmp
+
 COPY . /app
 WORKDIR /app
 RUN ["dnu", "restore"]
