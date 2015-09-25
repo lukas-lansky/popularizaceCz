@@ -1,5 +1,7 @@
 artifacts
 
+src/PopularizaceCz/config.json
+
 src/PopularizaceCz/PopularizaceCz.kproj.user
 
 src/PopularizaceCz/bower_components
