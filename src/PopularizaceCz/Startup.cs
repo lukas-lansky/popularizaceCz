@@ -73,14 +73,7 @@ namespace PopularizaceCz
         {
             loggerfactory.AddConsole();
 
-            if (appConfig.Development)
-            {
-                app.UseErrorPage();
-            }
-            else
-            {
-                app.UseErrorHandler("/Home/Error");
-            }
+            app.UseErrorPage();
 
             app.UseStaticFiles();
             
