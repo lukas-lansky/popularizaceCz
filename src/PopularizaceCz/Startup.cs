@@ -9,9 +9,9 @@ using StackExchange.Profiling;
 using StackExchange.Profiling.Data;
 using PopularizaceCz.Services.ICalExport;
 using Microsoft.Framework.Configuration;
-using Microsoft.Framework.Runtime;
 using PopularizaceCz.DataLayer.Repositories;
 using PopularizaceCz.Services.YouTube;
+using Microsoft.Dnx.Runtime;
 
 namespace PopularizaceCz
 {
@@ -19,7 +19,8 @@ namespace PopularizaceCz
     {
         public Startup(IHostingEnvironment env, IApplicationEnvironment appEnv)
         {
-            var builder = new ConfigurationBuilder(appEnv.ApplicationBasePath)
+            var builder = new ConfigurationBuilder()
+                .SetBasePath(appEnv.ApplicationBasePath)
                 .AddJsonFile("config.json")
                 .AddJsonFile($"config.{env.EnvironmentName}.json", optional: true);
 
@@ -73,7 +74,7 @@ namespace PopularizaceCz
         {
             loggerfactory.AddConsole();
 
-            app.UseErrorPage();
+            app.UseDeveloperExceptionPage();
 
             app.UseStaticFiles();
             

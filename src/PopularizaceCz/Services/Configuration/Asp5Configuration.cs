@@ -26,7 +26,7 @@ namespace PopularizaceCz.Services.Configuration
         {
             get
             {
-                var cs = this._config.Get("ConnectionString");
+                var cs = this._config["ConnectionString"];
 
                 if (cs.IsNullOrWhitespace())
                 {
@@ -51,7 +51,7 @@ namespace PopularizaceCz.Services.Configuration
         {
             get
             {
-                return this._config.Get("Development").ToLower().Trim() == "true";
+                return this._config["Development"].ToLower().Trim() == "true";
             }
         }
     }
