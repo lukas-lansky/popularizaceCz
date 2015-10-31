@@ -78,6 +78,8 @@ namespace PopularizaceCz
 
             app.UseStaticFiles();
             
+            app.UseIISPlatformHandler();
+            
             app.UseMvc(routes =>
             {
                 routes.MapRoute(

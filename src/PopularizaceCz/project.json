@@ -2,6 +2,7 @@
   "webroot": "wwwroot",
   "version": "1.0.0-*",
   "dependencies": {
+    "Microsoft.AspNet.IISPlatformHandler": "1.0.0-beta8",
     "Microsoft.AspNet.Mvc": "6.0.0-beta8",
     "Microsoft.AspNet.Mvc.TagHelpers": "6.0.0-beta8",
     "Microsoft.AspNet.Authentication.Cookies": "1.0.0-beta8",
