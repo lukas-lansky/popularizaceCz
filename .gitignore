@@ -12,6 +12,8 @@ src/PopularizaceCz/wwwroot/lib
 
 Database/Connections/Azure.publish.xml
 
+project.lock.json
+
 # User-specific files
 
 *.suo
