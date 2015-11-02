@@ -30,7 +30,7 @@ namespace PopularizaceCz.Controllers
         public async Task<IActionResult> Index()
         {
             return View(new HomepageViewModel {
-                UpcomingTalks = await this._talks.GetUpcomingTalks(),
+                UpcomingTalks = await this._talks.GetUpcomingTalks(20),
                 FrequentSpeakers = await this._persons.GetPersonsWithMostTalks(),
                 FrequentOrganizers = await this._orgs.GetOrganizationsWithMostTalks(),
                 FrequentCategories = await this._cats.GetCategoriesWithMostTalks() });

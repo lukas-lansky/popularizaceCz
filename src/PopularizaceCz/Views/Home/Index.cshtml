@@ -4,7 +4,7 @@
 }
 
 <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-6">
         <h2>Nadcházející přednášky</h2>
         <ul>
             @foreach (var p in Model.UpcomingTalks)
@@ -16,8 +16,8 @@
 		<p style="text-align: right">@Html.ActionLink("iCal export", "ExportUpcoming", "Talk")</p>
     </div>
     
-    <div class="col-md-4">
-        <h2>Záznamy podle osobností</h2>
+    <div class="col-md-3">
+        <h2>Osobnosti</h2>
         <ul>
             @foreach (var speaker in this.Model.FrequentSpeakers)
             {
@@ -25,7 +25,7 @@
             }
         </ul>
 
-        <h2>Záznamy podle témat</h2>
+        <h2>Témata</h2>
         <ul>
             @foreach (var cat in this.Model.FrequentCategories)
             {
@@ -33,7 +33,7 @@
             }
         </ul>
         
-        <h2>Záznamy podle organizátorů</h2>
+        <h2>Organizátoři</h2>
         <ul>
             @foreach (var organizer in this.Model.FrequentOrganizers)
             {
@@ -42,7 +42,7 @@
         </ul>
     </div>
 
-    <div class="col-md-4">
+    <div class="col-md-3">
         <h2>O projektu</h2>
 
         <p>Popularizace.cz je skromný web agregující přednášky ozřejmující vědu, techniku a kulturu. V současném stavu mu do dokonalosti mnoho chybí. Pokud se povede, měl by sloužit jednak jako zdroj informací o tom, kam se v nadcházejících týdnech dá jít poslouchat, jednak jako místo s odkazy na záznamy na přednášky uplynulé.</p>
