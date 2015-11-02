@@ -37,6 +37,12 @@
 
 }
 
+.talkSubtitle
+{
+    position: relative;
+    top: -12px;
+}
+
 
 /* Wrapping element */
 /* Set some basic padding to keep content from hitting the edges */

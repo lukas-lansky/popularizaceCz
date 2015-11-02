@@ -38,5 +38,20 @@ namespace PopularizaceCz.DataLayer.Models
         public IList<TalkRecordingDbEntity> Recordings { get; set; }
 
         public VenueDbEntity Venue { get; set; }
+        
+        public string GetUrl()
+        {
+            if (this.Url != null)
+            {
+                return this.Url;
+            }
+            
+            if (this.Organizers != null && this.Organizers.Any())
+            {
+                return this.Organizers.First().Url;
+            }
+            
+            return null;
+        }
     }
 }
