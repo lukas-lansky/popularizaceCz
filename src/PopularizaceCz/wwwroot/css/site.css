@@ -43,6 +43,11 @@
     top: -12px;
 }
 
+footer
+{
+    font-size: small;
+    text-align: right;
+}
 
 /* Wrapping element */
 /* Set some basic padding to keep content from hitting the edges */
