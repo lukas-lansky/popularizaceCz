@@ -12,5 +12,7 @@ namespace PopularizaceCz.DataLayer.Repositories
         Task<IEnumerable<TalkDbEntity>> GetUpcomingTalks(int take = 10);
 
         Task Update(TalkDbModel model);
+        
+        Task<int> Create(TalkDbModel model);
     }
 }

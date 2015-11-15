@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using PopularizaceCz.Services.ICalExport;
 using PopularizaceCz.DataLayer.Repositories;
 using PopularizaceCz.Services.YouTube;
+using PopularizaceCz.DataLayer.Models;
 
 namespace PopularizaceCz.Controllers
 {
@@ -63,11 +64,28 @@ namespace PopularizaceCz.Controllers
                 return RedirectToAction("Show", new { id });
             }
 
-            return View(new TalkEditViewModel {
+            return View("CreateOrEdit", new TalkEditViewModel {
                 DbModel = await this._talks.GetById(id),
                 AllSpeakers = await this._persons.GetAllPersons(),
                 AllOrganizations = await this._organizations.GetAllOrganizations(),
                 AllCategories = await this._cats.GetAllCategories() });
+        }
+        
+        public async Task<IActionResult> Create(TalkEditViewModel model)
+        {
+            if (!string.IsNullOrEmpty(model?.DbModel?.Name))
+            {
+                var talkId = await this._talks.Create(model.DbModel);
+                
+                return RedirectToAction("Show", new { talkId });
+            }
+            
+            return View("CreateOrEdit", new TalkEditViewModel {
+                DbModel = new TalkDbModel(),
+                AllSpeakers = await this._persons.GetAllPersons(),
+                AllOrganizations = await this._organizations.GetAllOrganizations(),
+                AllCategories = await this._cats.GetAllCategories()
+            });
         }
 		
 		public async Task<IActionResult> ExportUpcoming(string format = "ical")

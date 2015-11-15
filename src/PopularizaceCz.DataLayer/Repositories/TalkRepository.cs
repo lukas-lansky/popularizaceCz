@@ -78,6 +78,31 @@ namespace PopularizaceCz.DataLayer.Repositories
                     Subtitle = model.Subtitle,
                     TalkId = model.Id });
 
+            await this.UpdateBindings(model);
+        }
+        
+        public async Task<int> Create(TalkDbModel model)
+        {
+            var talkId = (await this._db.QueryAsync<int>(
+                @"INSERT INTO [Talk] ([Name], [Start], [Url], [Subtitle])
+                VALUES (@Name, @Start, @Url, @Subtitle)
+                
+                SELECT CAST(SCOPE_IDENTITY() as int)",
+                new {
+                    Name = model.Name,
+                    Start = model.Start,
+                    Url = model.Url,
+                    Subtitle = model.Subtitle
+                })).Single();
+            model.Id = talkId;
+            
+            await this.UpdateBindings(model);
+            
+            return model.Id;
+        }
+        
+        private async Task UpdateBindings(TalkDbModel model)
+        {
             // speakers
 
             await this._db.ExecuteAsync("DELETE FROM [TalkSpeaker] WHERE [TalkId]=@TalkId", new { TalkId = model.Id });

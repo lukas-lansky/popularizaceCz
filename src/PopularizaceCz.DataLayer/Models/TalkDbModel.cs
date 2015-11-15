@@ -9,7 +9,13 @@ namespace PopularizaceCz.DataLayer.Models
     {
         public TalkDbModel()
         {
-
+            this.Speakers = new List<PersonDbEntity>();
+            
+            this.Organizers = new List<OrganizationDbEntity>();
+            
+            this.DirectCategories = new List<CategoryDbEntity>();
+            
+            this.Recordings = new List<TalkRecordingDbEntity>();
         }
 
         public TalkDbModel(TalkDbEntity e, VenueDbEntity venue,
